@@ -22,7 +22,11 @@ already runs, and drilled restores.
 
 ### Work Resumes From Committed State
 
-The next owner of a partition MUST resume each session from its committed cursors.
+The next owner of a partition MUST resume each session from its committed cursors whenever the
+committed cluster state survives.
+
+After total-cluster loss, the next owner MUST resume each session from the cursors recovered within
+the last-durable-freeze loss boundary.
 
 An interrupted model attempt MUST run again under its idempotency key.
 
@@ -52,7 +56,12 @@ A dirty timer change MUST be written to the backstop within the configured inter
 
 An orderly shutdown MUST lose nothing.
 
-A crash MUST lose at most what the last freeze did not cover.
+A total-cluster disaster restore MUST lose at most ordinary session progress not covered by the last
+durable freeze.
+
+Ordinary session progress acknowledged after that freeze may be lost in this failure domain. This
+allowance does not apply to single-node committed-state recovery or to tenant governance records,
+which retain their separate durability-before-acknowledgment requirement.
 
 ### State That Is Not Per-Session Survives Too
 

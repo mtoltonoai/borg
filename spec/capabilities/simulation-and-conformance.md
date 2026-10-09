@@ -61,8 +61,14 @@ A scenario MUST check that no commit or dispatch from a superseded owner takes e
 A scenario MUST check that a superseded owner's delayed dispatch cannot take effect before its receiver
 records the replacement generation, including outside targets covered by the tool-call contract.
 
-A scenario MUST check that a crash at any point leaves the session at its step in progress and the next
-owner finishes it.
+A scenario MUST check that a single-node crash leaves the session at its committed step in progress
+and the next owner finishes it from surviving cluster state.
+
+A scenario MUST check that total-cluster disaster restoration loses no ordinary session progress
+covered by the last durable freeze.
+
+A scenario MUST check that total-cluster disaster restoration preserves acknowledged tenant governance
+records.
 
 A scenario MUST check that no tool runs unless the card lists it.
 

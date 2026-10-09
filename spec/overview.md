@@ -307,7 +307,9 @@ and tool call has a deadline, and every blocked or quarantined state has a way o
 The store must survive a full-cluster restart, with backup and restore defined. Until the shared
 framework's durable log lands, a backstop outside the cluster holds what a new cluster needs to resume
 every session, written at each freeze and at shutdown and conditioned on an epoch so a replaced cluster
-cannot write back; an orderly drain loses nothing and a crash loses at most the last freeze interval. The
+cannot write back; an orderly drain loses nothing. A single-node failure recovers committed progress
+from surviving cluster state. Total-cluster disaster restoration may lose ordinary acknowledged session
+progress since the last durable freeze, while acknowledged tenant governance records remain protected. The
 platform deploys through the deployment control plane the team already operates, as a cluster type of
 its own that never shares a cluster with other workloads; durable formats are versioned so two versions
 run side by side; alarms and dashboards derive from the platform's own events, every alarm has a runbook,
