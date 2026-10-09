@@ -1,0 +1,175 @@
+'$schema' = "https://awslabs.github.io/duvet/config/v0.4.0.json"
+
+# =============================================================================
+# Borg conformance gate — the requirement -> code/test coverage map.
+#
+# TWO HALVES, split by who owns them:
+#
+#   [[specification]]  — STABLE. Hand-owned. One block per NORMATIVE spec file.
+#                        This is the requirement side: duvet extracts every
+#                        RFC-2119 sentence from these files. `format = "markdown"`
+#                        is REQUIRED (the default is IETF and extracts nothing
+#                        from our prose). A requirement's identity is
+#                        (spec file, section slug, quoted sentence) — there are
+#                        no invented IDs; editing a sentence flags every stale
+#                        citation as a hard error. Source paths are relative to
+#                        the PROJECT ROOT (the parent of this .duvet/ directory).
+#
+#                        Only NORMATIVE files are listed. The descriptive files
+#                        (spec/overview.md, spec/glossary.md, spec/traceability.md,
+#                        spec/defaults.md) carry no RFC-2119 requirements and are
+#                        intentionally omitted.
+#
+#   [[source]]         — the code side: the globs of the first-party crates that
+#                        cite the requirements. The platform's code lives under
+#                        api/, components/, daemons/, and tools/. Generated code
+#                        is excluded (it is gitignored and nobody hand-cites it).
+# =============================================================================
+
+# ---- code side (the first-party crates that carry citations) ----------------
+[[source]]
+pattern = "api/**/*.rs"
+
+[[source]]
+pattern = "components/**/*.rs"
+
+[[source]]
+pattern = "daemons/**/*.rs"
+
+[[source]]
+pattern = "tools/**/*.rs"
+
+# ---- requirement side (stable; one [[specification]] per normative spec) ----
+
+[[specification]]
+source = "constitution.md"
+format = "markdown"
+
+# contracts — the cross-party interfaces honored across versions
+[[specification]]
+source = "spec/contracts/signed-assertion.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/definition-source.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/decision-hook.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/event-hook.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/event-envelope.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/tool-call.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/usage-record.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/evidence-record.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/contracts/stored-form.md"
+format = "markdown"
+
+# capability specifications — platform behavior
+[[specification]]
+source = "spec/capabilities/sessions-and-partitions.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/events-and-subscriptions.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/failure-handling.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/model-turns-and-scheduling.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/context-compaction-and-cache.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/tools-and-dispatch.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/governance.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/identity-delegation-and-secrets.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/tenancy-and-confidentiality.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/encryption-and-blobs.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/definitions-and-sources.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/timers.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/the-frontend.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/observation-and-usage.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/durability-and-deployment.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/simulation-and-conformance.md"
+format = "markdown"
+
+# capability specifications — the products beside the platform
+[[specification]]
+source = "spec/capabilities/collaboration-platform.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/workspace-service.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/spec-driven-design.md"
+format = "markdown"
+
+[[specification]]
+source = "spec/capabilities/shared-framework.md"
+format = "markdown"
+
+# ---- reports ----------------------------------------------------------------
+[report.json]
+enabled = true
+
+[report.html]
+enabled = true
+
+[report.snapshot]
+enabled = true
