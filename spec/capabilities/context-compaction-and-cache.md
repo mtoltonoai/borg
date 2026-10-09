@@ -58,13 +58,20 @@ turn.
 
 Both thresholds MUST be below the model's context window.
 
+A session's soft compaction threshold MUST be lower than its hard compaction threshold.
+
+The soft threshold starts compaction before the hard admission hold is needed. Together with rising
+compaction priority near the hard threshold and pre-idle compaction, this is intended to make such
+holds rare; it is not a numeric margin, latency target or guarantee that every hold is avoided.
+
 ### Compaction Runs In The Background
 
 A compaction MUST be a side request that covers the transcript up to a cut point.
 
 A compaction result MUST be swapped in only at a turn boundary.
 
-A session MUST keep working while its compaction runs.
+A session MUST keep working while its compaction runs only while the hard compaction threshold does
+not require the next turn to wait.
 
 Cancelling a compaction MUST NOT change the session's durable state.
 
@@ -76,7 +83,11 @@ rescheduled.
 A compaction's priority MUST rise as the context nears the hard threshold, so that a stream of events
 cannot starve it.
 
-A turn that arrives during a compaction MUST run on the uncompacted context.
+A turn that arrives during a compaction MUST run on the uncompacted context only when the hard
+compaction threshold does not require it to wait.
+
+A turn held by the hard compaction threshold MUST wait until a successful compaction has made its
+admission permissible.
 
 ### The Swap Preserves History
 
