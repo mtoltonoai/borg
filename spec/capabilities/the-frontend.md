@@ -68,6 +68,11 @@ The API MUST expose pause, stop, quarantine, and resume, per session, per defini
 
 An emergency control MUST work when the definition source is unreachable.
 
+An authorized emergency pause or stop MUST remain authoritative after source recovery until an
+explicit authorized change reconciles it.
+
+Reconciliation of an emergency stop MUST NOT resume a terminated session.
+
 ## The Data Plane
 
 ### What The Data Plane Accepts

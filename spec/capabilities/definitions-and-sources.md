@@ -116,7 +116,10 @@ An unreachable source MUST change nothing.
 
 A definition missing from the index MUST be held, never retired.
 
-Only a served retirement MUST end a definition's sessions.
+A definition's sessions MUST end only on served retirement or an authorized emergency stop.
+
+A recovered source MUST NOT override an authorized emergency pause or stop without explicit authorized
+reconciliation.
 
 ## Standing Schedules
 

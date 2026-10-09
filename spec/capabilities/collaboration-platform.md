@@ -53,9 +53,10 @@ Authorization MUST fail closed.
 
 ### Lifecycle Intent Is The Only Pause Path
 
-An agent's run, paused, or retired intent MUST be the only way to pause its sessions.
+An agent's served lifecycle intent MUST govern pauses other than authorized emergency pauses.
 
-A pause by any path MUST resolve to that intent.
+An authorized emergency pause MUST remain authoritative until an explicit authorized change reconciles
+it with the agent's served lifecycle intent.
 
 A check MUST report any agent whose intent and reported state disagree.
 

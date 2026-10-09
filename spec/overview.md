@@ -245,7 +245,9 @@ per binding validates each version against the schema and the tenant's ceilings,
 input deciders and the control-operation hook, and accepts or rejects it with a reason. Sessions pin a
 digest and adopt new versions at turn boundaries, by cohort, with a version able to run as an experiment
 against its parent. An unreachable source changes nothing; a definition missing from the index is held,
-never retired; only a served retirement ends sessions. A change to the cached prefix is made without
+never retired; served retirement or an authorized emergency stop ends sessions. Emergency pause and
+stop remain authoritative after source recovery until explicit authorized reconciliation; reconciliation
+does not resume a terminated session. A change to the cached prefix is made without
 rewriting it, through each provider's cache-preserving path, and accumulated changes fold into the prefix
 at the next compaction. A definition names no principal and carries no credential; a keyed definition's
 instance is created by its first event and acts for its requester.
@@ -335,8 +337,8 @@ changes per record rather than across the tenant, takes every caller's identity 
 authentication, and keeps every id people cite. Toward the platform it is a client and an adapter, never
 a client of the durable store: it publishes every record change to that record's topic with ids derived
 from its revision so delivery is exactly once, manages agents' subscriptions as tasks are assigned and
-finished, serves agent cards as the first definition source with lifecycle intent as the only pause
-path, answers stop admission from whether an agent has open unblocked work, receives status hooks that
+finished, serves agent cards as the first definition source with lifecycle intent governing ordinary
+pauses and authorized emergency pauses retained until explicit authorized reconciliation, answers stop admission from whether an agent has open unblocked work, receives status hooks that
 replace agents reporting themselves, embeds the session tail in an agent's profile, and keeps only
 person-addressed notifications of its own. Coordination across agents (fan-out, collect, loops with a
 cap, re-delegation) lives here as tasks and assignments until working cases show what generalizes.

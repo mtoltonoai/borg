@@ -110,11 +110,20 @@ A tool that writes a definition MUST declare the definition-write call type on i
 
 A client MUST treat a definition missing from the index as held rather than retired.
 
-A client MUST end a definition's sessions only when the source serves the definition as retired.
+A client MUST end a definition's sessions only when the source serves the definition as retired or an
+authorized emergency stop applies.
 
 ### Pause Is Served, Not Inferred
 
-A source MUST serve a paused intent as the only way to pause a definition's sessions.
+A source MUST serve a paused intent for a definition-level pause that is not an authorized emergency
+pause.
+
+A client MUST preserve an authorized emergency pause or stop across source recovery until an explicit
+authorized change reconciles that action.
+
+Source recovery alone MUST NOT resume a session held by an authorized emergency pause.
+
+A terminated session MUST NOT be resumed by reconciling an emergency stop.
 
 ## Conformance
 
@@ -132,3 +141,13 @@ an explicit version increment.
 
 A change to this contract that is not additive with respect to deployed sources and clients MUST carry
 a stated migration path.
+
+### Version And Migration
+
+**Contract version: 2.** The previously unnumbered contract is the initial revision. This revision
+qualifies source-only lifecycle precedence for authorized emergency controls and is non-additive for
+clients that formerly let a recovered source override those controls. Coordinate source/client
+adoption and test recovery with a still-running served intent before claiming conformance. Existing
+authentication, authorization, missing-definition holds and explicit reconciliation remain required.
+The wire shape, control storage and reconciliation mechanism are not selected by this amendment;
+no deployed migration is claimed.
