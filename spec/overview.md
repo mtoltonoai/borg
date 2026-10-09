@@ -139,9 +139,12 @@ lists the servers and tools its sessions may call, dispatch refuses anything not
 trusted to enforce what a model loaded. A tool call is a durable operation: resolved against the card,
 passed through the tool-call hook, recorded before it goes out, run with credentials leased by reference
 for the principal and chain, passed through the tool-result hook, and committed as a state transition.
-The call id is the dedupe key end to end; on recovery an idempotent call runs again and a side-effecting
-one returns "outcome unknown"; a superseded owner's dispatch is refused by every service the platform's
-operators run; outbound calls leave through one egress point that admits only named destinations.
+The call id is the dedupe key end to end; recovery retries a call under a declared idempotency guarantee
+that covers its unrecorded outcome, even when it has side effects, without a prerequisite outcome check.
+A side-effecting call without that guarantee returns "outcome unknown". A superseded owner's dispatch
+does not take effect even before its receiver learns of replacement, including outside targets covered
+by the tool-call contract; receiver-local generation checks do not exhaust that guarantee. Outbound
+calls leave through one egress point that admits only named destinations.
 
 The platform implements as native tools only what acts on its own state: subscriptions, publish and send,
 sub-sessions and forks, focus, timers, a small key-value slot, loading a deferred tool, and paging a
@@ -210,8 +213,9 @@ is only one real one. The first tenant is bootstrapped with a stage's first clus
 configured, and there is no path for registering tenants until a second one needs it.
 
 Inside a tenant, confidentiality follows access scopes: every inbound event carries the scope its source
-allowed, every transcript range, compaction, and observation record carries the union of its inputs'
-scopes, and a consumer or viewer passes a read check against that scope. Scopes are recorded from the
+allowed, every transcript range, compaction, and observation record preserves all of its inputs' read
+restrictions, and a consumer or viewer needs permission to read every input before reading the combined
+content. This reader rule does not prescribe a scope representation. Scopes are recorded from the
 first event, because a private channel cannot be separated out again once it is compacted into a summary.
 
 ## 11. Encryption at rest and the blob store
@@ -291,8 +295,9 @@ control, run it on a cohort against its parent, and only then roll it out.
 The durable state machine is the source of truth, all work is re-drivable from it, every side effect
 carries an idempotency key, and every failure class has one defined handling and a defined state the
 session ends in: throttles back off and queue, an exceeded window compacts and retries, an invalid request
-blocks with its reason, a mid-stream failure discards the partial reply, an unreachable idempotent tool
-retries while a side-effecting one reports an unknown outcome, undecodable state is quarantined and never
+blocks with its reason, a mid-stream failure discards the partial reply, and a tool retries within its
+budget when its declared idempotency guarantee covers an unrecorded outcome, even if it has side effects.
+A side-effecting call without that guarantee reports an unknown outcome. Undecodable state is quarantined and never
 overwritten, an event that keeps failing is quarantined so it cannot wedge its partition, a moved
 partition resumes from committed cursors, and a source that is unreachable changes nothing. Every turn
 and tool call has a deadline, and every blocked or quarantined state has a way out an adapter can drive.
@@ -377,12 +382,13 @@ for the store itself.
 
 ## 22. What is deliberately left open
 
-The platform is released early to learn from use: the irreversible choices are decided now, security
-above all, and the reversible ones wait until use demands them, each kept open by a named property. Quotas and fair share between tenants wait
-behind the hooks and the tenant on every request; metering and billing behind the usage stream; tenant
-registration behind the tenant on every record; cells behind location-free ids; more identity providers
-behind provider-qualified principals; a tenant's own key and capacity behind the envelope design and
-capacity sources; stronger isolation behind the sandbox being the only place tenant code runs;
+The platform is released early to learn from use, but its first conformance claim retains all current
+normative obligations. There is no implicit phase deferral for fair sharing, downstream metering and
+billing, or tenant-supplied keys and capacity. Foundational usage records and their required consumers
+remain in scope. Product choices and additional mechanisms remain open only where they do not defer an
+existing normative obligation: tenant registration behind the tenant on every record; cells behind
+location-free ids; more identity providers behind provider-qualified principals; stronger isolation
+behind the sandbox being the only place tenant code runs;
 cross-tenant collaboration behind explicit shares as grants; streaming ingress and request-reply between
 sessions behind topics and call ids on sends; signed definitions behind the attested author recorded with
 each version; and a reference definition source serving a repository, and serving external customers, as

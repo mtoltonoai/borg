@@ -33,6 +33,9 @@ The service MUST verify each call's assertion and its lease generation.
 The service MUST refuse a call whose lease generation is older than the highest it has recorded for the
 session, with a distinct error.
 
+The workspace service MUST prevent a superseded owner's call from taking effect even if it has not yet
+recorded the replacement generation.
+
 The service MUST run a call id it has a receipt for at most once.
 
 ### Operations

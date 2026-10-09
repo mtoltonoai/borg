@@ -33,6 +33,11 @@ The platform MUST treat a spec as untrusted input, since its description enters 
 A tool's semantics MUST include whether it is idempotent, whether it has side effects, its timeout, its
 retry policy, and whether it is cancellable.
 
+Idempotency and side effects are independent properties. When a declared idempotency guarantee covers
+an unrecorded outcome, recovery retries under that guarantee without first requiring an outcome check,
+even when the call has side effects. Retry budgets, the original call id, authorization and the other
+dispatch checks still apply; a side effect alone is not a repeat-safety guarantee.
+
 A tool MAY declare a reconcile binding that reports whether an in-flight effect landed.
 
 A tool's semantics MUST default to the server's declared annotations.
@@ -84,9 +89,13 @@ outcome.
 A service the platform's operators run MUST refuse a call whose lease generation is older than the
 highest it has recorded for that session.
 
+A tool call from a superseded owner MUST NOT take effect even when its receiver has not yet recorded
+the replacement generation.
+
 The refusal of a superseded owner MUST be distinct from any other error.
 
-A remote target outside the operators' control MAY be guarded only by the call id.
+A remote target outside the operators' control MAY use call-id deduplication only if the complete call
+path also prevents a superseded owner's dispatch from taking effect.
 
 ## Results
 
@@ -103,7 +112,8 @@ An error a tool returns MUST reach the model as an error result rather than as a
 ### An Interrupted Side Effect Reports Unknown
 
 A side-effecting call interrupted before its outcome was recorded MUST return an unknown outcome that
-names what was sent and when.
+names what was sent and when if its declared semantics do not guarantee safe repetition with an
+unrecorded outcome.
 
 ### A Long Call May Finish Later
 
@@ -118,3 +128,22 @@ explicit version increment.
 
 A change to this contract that is not additive with respect to deployed tool servers MUST carry a stated
 migration path.
+
+### Version And Migration
+
+**Contract version: 2.** For this amendment's version history, the previously unnumbered contract is
+the initial revision. This revision changes the precedence between retry and unknown-outcome handling
+and clarifies stale-dispatch prevention before a receiver observes replacement; it is not treated as
+an additive behavioral change for deployed parties.
+
+Migration is coordinated between callers and tool servers. Before a caller adopts this revision,
+review each tool's effective declaration for whether its repeat-safety guarantee covers a lost result.
+Calls with that guarantee use the retry precedence, retaining the original call id and retry budget.
+Calls without it retain unknown-outcome handling and the existing reconcile binding, when present.
+Declarations that do not cover the uncertain-outcome case are not widened by this migration. This
+revision adds no wire field, executor mechanism or permission, and records no completed deployment.
+
+For stale-dispatch prevention, coordinate callers and receivers to validate that a replaced owner's
+delayed call cannot take effect before the receiver records the new generation, including covered
+outside targets. Existing local-generation checks and call-id deduplication alone are not evidence
+that this case is prevented. No particular enforcement mechanism is chosen by this migration.

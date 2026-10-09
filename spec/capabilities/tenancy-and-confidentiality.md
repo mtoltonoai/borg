@@ -102,12 +102,18 @@ Every inbound event MUST carry an access scope from its source.
 
 ### Scopes Propagate As Unions
 
-A transcript range, a compaction, and an observation record MUST carry the union of its inputs' access
-scopes.
+A transcript range, a compaction, and an observation record MUST carry an access scope that preserves
+every input's read restrictions.
+
+The heading's union refers to retaining all input restrictions, not combining lists of allowed
+readers into a larger allowed-reader set; it does not prescribe how scopes are represented.
 
 ### A Reader Passes A Scope Check
 
 A consumer or derived store MUST pass a read check against the access scope before it reads.
+
+A reader MUST be denied access to derived content if it lacks permission to read any input from which
+that content was derived.
 
 Delivery to a viewer MUST enforce the read check.
 

@@ -80,10 +80,11 @@ A turn whose reply failed mid-stream MUST be retried as a new attempt.
 
 ### An Unreachable Or Timed-Out Tool
 
-An idempotent tool call whose server is unreachable or timed out MUST be retried within its budget.
+An idempotent tool call whose server is unreachable or timed out MUST be retried within its budget
+when its declared idempotency guarantee covers the unrecorded outcome.
 
 A side-effecting tool call whose server is unreachable or timed out MUST return an unknown outcome to
-the model.
+the model if its declared semantics do not guarantee safe repetition with an unrecorded outcome.
 
 ### A Tool Error
 

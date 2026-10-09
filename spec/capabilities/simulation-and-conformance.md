@@ -58,6 +58,9 @@ A scenario MUST check that events apply in order per session.
 
 A scenario MUST check that no commit or dispatch from a superseded owner takes effect.
 
+A scenario MUST check that a superseded owner's delayed dispatch cannot take effect before its receiver
+records the replacement generation, including outside targets covered by the tool-call contract.
+
 A scenario MUST check that a crash at any point leaves the session at its step in progress and the next
 owner finishes it.
 

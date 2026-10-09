@@ -48,6 +48,26 @@ separately and cites these requirements; it is never the source of truth here.
    binds to the change-process check rather than to a runtime citation, and is not counted as gating for
    a build's requirement gate.
 
+## Collaboration and commit approval
+
+Every commit requires direct approval from Matthew Tolton or Cameron Bytheway for that specific
+commit before it is created. Task assignment, agreement with a design, approval of a previous commit,
+or permission to publish does not approve another commit. This applies to new and rewritten commits,
+including amendments, merges, cherry-picks and rebases.
+
+Prepare the working-tree diff, exact base revision, validation results and proposed commit message
+first. Present the specific changes for review and record the human's approval evidence. If the
+proposed changes change after approval, obtain approval for the revised commit before creating it.
+Do not manufacture approval, infer it from silence, or add it retrospectively. Publication is a
+separate action with its own authorized scope.
+
+The commit message records as much decision lineage as is available: the source baseline; exact
+questions and answers; the human approver and approval evidence; affected files, sections and
+requirement sentences; rationale and intentionally unchanged obligations; independent review;
+validation results; and any contract version or migration implications. Distinguish a decision's
+approval from approval to create the commit. Preserve prior history and identify unresolved questions
+without presenting them as decided.
+
 ## The gate
 
 The requirement gate is [duvet](https://github.com/awslabs/duvet), configured in

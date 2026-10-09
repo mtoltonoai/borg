@@ -75,16 +75,25 @@ A tool result MUST be committed as a state transition.
 
 ### Recovery Follows The Tool's Semantics
 
-An in-flight idempotent call found on recovery MUST run again.
+An in-flight call found on recovery MUST be retried within its retry budget when its declared
+idempotency guarantee covers the unrecorded outcome.
 
-An in-flight side-effecting call found on recovery MUST return an unknown outcome to the model with what
-was sent and when.
+Recovery MUST NOT require an outcome check before retrying a call whose declared idempotency guarantee
+covers the unrecorded outcome.
 
-A tool with a reconcile binding MUST be asked on recovery whether its effect landed.
+An in-flight side-effecting call found on recovery MUST return an unknown outcome to the model with
+what was sent and when if its declared semantics do not guarantee safe repetition with an unrecorded
+outcome.
+
+A tool with a reconcile binding MUST be asked on recovery whether its effect landed if its declared
+semantics do not guarantee safe repetition with an unrecorded outcome.
 
 ### A Superseded Owner Cannot Act
 
 Every dispatch MUST carry the caller's lease generation.
+
+A dispatch from a superseded owner MUST NOT take effect even when its receiver has not yet recorded
+the replacement generation.
 
 ### Calls Leave Through One Egress Point
 

@@ -95,6 +95,9 @@ header the caller controls.
 
 A service MUST refuse a call whose lease generation is older than the highest it has recorded for that session.
 
+A service MUST prevent a superseded owner's call from taking effect even if the service has not yet
+recorded the replacement generation.
+
 That refusal MUST be distinct from an authorization failure.
 
 ## Where An Assertion Is Presented
@@ -116,3 +119,16 @@ version increment.
 
 A change to this contract that is not additive with respect to deployed verifiers MUST carry a stated
 migration path.
+
+### Version And Migration
+
+**Contract version: 2.** For this amendment's version history, the previously unnumbered contract is
+the initial revision. Receiver-local generation checks remain required, but do not exhaust the
+superseded-owner prevention guarantee. This clarification is treated as non-additive for deployed
+parties that previously relied only on the highest generation they had observed.
+
+Migration coordinates callers and verifiers against the stronger observable outcome: a delayed call
+from a replaced owner does not take effect while the receiver still knows only the old generation.
+Retain existing assertion, identity and refusal checks, and validate that case before claiming this
+revision's conformance. A covered outside target is not exempt because it has not observed replacement.
+The enforcement mechanism and assertion wire shape are not selected or changed by this amendment.

@@ -90,8 +90,9 @@
 - **Priority** — a number the core carries on sessions, events, timers, and work; it orders everything
   that queues. Named classes are an adapter convention.
 - **Causal parent** — the event that caused another, named on every delivered event.
-- **Access scope** — the readers an event's source allowed, carried on the event and propagated as a
-  union onto everything derived from it.
+- **Access scope** — the read restrictions an event's source imposed, carried on the event and
+  preserved on derived content; reading combined content requires permission to read every input.
+  Combining scopes does not grant the readers of one input access to another input.
 - **Dropped-count marker** — what an inbox keeps, per topic, in place of events discarded past its cap,
   so nothing is dropped silently.
 - **Viewer** — one live connection from one person's page, opened with a short-lived **viewer token**;
@@ -139,6 +140,8 @@
   that provides it, and its **semantics** (idempotent, side effects, timeout, retry, cancellable,
   reconcile binding) default to the server's annotations and can only be made more conservative.
 - **Tool server** — a service that lists tools and answers calls over the tool protocol.
+- **Idempotent call** — a call declared safe to repeat under its effective tool semantics; retrying
+  after a lost result relies on that guarantee covering the unrecorded-outcome case.
 - **Card** — the served form of a definition version as a session loads it; in particular the registry of
   tool servers and tools its sessions may call.
 - **Call type** — a tag a tool spec declares (for example a board comment, or a definition write) that
@@ -148,8 +151,8 @@
 - **Call id** — the dedupe key of a tool call end to end, given to the executor and to any target that
   honors one.
 - **Dispatch record** — the durable record of a call, committed before the call goes out.
-- **Outcome unknown** — the result returned to the model for a side-effecting call interrupted before its
-  outcome was recorded.
+- **Outcome unknown** — an unrecorded tool outcome; a side-effecting call returns this result to the
+  model when its declared semantics do not guarantee safe repetition in that case.
 - **Reconcile** — asking a tool server whether a call id's effect landed.
 - **Native tool** — a tool the platform implements itself because it acts on the platform's own state.
 - **Sub-session** — a session started by another session, narrowed by the call, whose lifecycle returns
