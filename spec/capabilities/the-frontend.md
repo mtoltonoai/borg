@@ -107,14 +107,17 @@ reading the payload.
 The API MUST stream one session's activity as events that resume by id and can start from any point in
 the transcript.
 
-A tail MUST show output only once its deciders have passed.
+A tail MUST show output only once its deciders have passed unless the viewer is explicitly authorized
+for privileged live observation of ungated output.
 
 A viewer of a tail MUST hold a read grant on the session.
 
 A tail MUST be relayable from any node through a bounded buffer, so that a slow viewer is dropped and
 never slows the session.
 
-Live ungated output on a tail MUST be a privileged option marked as such.
+Live ungated output on a tail MUST be restricted to explicitly authorized privileged viewers.
+
+Live ungated output on a tail MUST be clearly marked as unapproved.
 
 ## Webhooks And Event Hooks
 

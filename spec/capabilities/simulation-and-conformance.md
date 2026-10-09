@@ -66,7 +66,15 @@ owner finishes it.
 
 A scenario MUST check that no tool runs unless the card lists it.
 
-A scenario MUST check that no output acts or leaves before its deciders pass.
+A scenario MUST check that no output acts or leaves before its deciders pass except for clearly marked
+unapproved output viewed by explicitly authorized privileged observers.
+
+A scenario MUST check that ordinary viewers cannot receive unapproved output.
+
+A scenario MUST check that privileged observation cannot bypass read grants or confidentiality checks.
+
+A scenario MUST check that privileged observation of unapproved output does not permit an ungated tool
+effect.
 
 A scenario MUST check that a structured secret never reaches the model's context, the transcript, state,
 events, or logs.

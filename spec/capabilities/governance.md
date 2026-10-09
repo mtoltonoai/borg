@@ -114,11 +114,18 @@ a defer.
 
 Model output MUST be gated per completed block.
 
-Model output MUST NOT take effect before it passes its deciders.
+Model output MUST NOT take effect before it passes its deciders, except for clearly marked unapproved
+output viewed by an explicitly authorized privileged observer.
+
+Privileged observation of unapproved output MUST enforce the same read grants and confidentiality
+restrictions as approved output.
 
 Anything that acts on the outside world MUST be a tool call gated before it runs.
 
-A live attach that sees output before it is gated MUST mark that output as ungated.
+A live attach that sees output before it is gated MUST mark that output as unapproved.
+
+A live attach MUST require explicit privileged-observation authorization before showing unapproved
+output.
 
 ## Stop Admission
 
