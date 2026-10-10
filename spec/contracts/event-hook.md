@@ -1,18 +1,18 @@
-# Contract — Event Hooks Out
+# Contract: Event Hooks Out
 
 > **CONTRACT.** This document pins the delivery of a session's lifecycle and status events to the
-> destinations its definition names. It is the mirror of webhooks in, and it replaces the turns agents
-> once spent reporting their own status and the watchdogs that polled for liveness. It is honored across
+> destinations its definition specifies. It is the outbound counterpart of webhooks in; because of it, no agent
+> spends a turn reporting its own status and no watchdog polls for liveness. It is honored across
 > releases by the platform and by every receiver. Its requirements realize
-> [Core Principle III](../../constitution.md) and trace to [overview §14](../overview.md).
+> [Core Principle III](../../constitution.md) and trace to [overview section 12](../overview.md).
 >
-> RFC-2119 key words are normative. Each requirement is a single self-contained sentence under a stable
+> The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly one obligation, under a stable
 > heading. The retry schedule and the signing keys are declared defaults.
 
 ## Purpose And Scope
 
-A receiver such as the collaboration platform learns a session's state from the platform rather than from
-the agent. Deliveries come from the session's durable outbox, so they survive crashes and moves, and they
+A receiver, for example the system that owns the list of root sessions, receives a session's state from the
+platform rather than from the agent. Deliveries come from the session's durable outbox, so they survive crashes and moves, and they
 never affect the session they describe. This contract fixes the event set, the delivery guarantees, the
 payload, and the receiver's obligations.
 
@@ -20,14 +20,17 @@ payload, and the receiver's obligations.
 
 ### The Set Is Closed And Versioned
 
-The set of event kinds a hook delivers MUST be a closed set named by this contract's version.
+The set of event kinds a hook delivers MUST be a closed set defined by this contract's version.
 
-The set MUST include started, adopted a version, woken, idle, blocked, waiting on a defer, stopped,
-failed, quarantined, and out of budget.
+The set of event kinds MUST include started, adopted a version, woken, idle, blocked, waiting on a defer, paused, resumed, stopped, failed, quarantined, and out of budget.
 
 A blocked event MUST carry its reason.
 
 A waiting-on-a-defer event MUST carry the defer's decision id.
+
+A paused event MUST carry its reason and the ids and dropped-count ranges of the pending events the session never applied.
+
+A resumed event MUST carry the session's new lease generation.
 
 ## Delivery
 
@@ -35,15 +38,15 @@ A waiting-on-a-defer event MUST carry the defer's decision id.
 
 A hook delivery MUST be made from the session's durable outbox rather than from memory.
 
-Deliveries MUST be at least once.
+Every event MUST be delivered at least once.
 
 Deliveries for one session MUST arrive in order of their sequence.
 
-Every delivery MUST carry an id that a receiver can dedupe on.
+Every delivery MUST carry an id by which a receiver recognizes a duplicate.
 
 Every delivery MUST carry a sequence number within its session.
 
-Every delivery MUST be signed with a timestamp.
+Every delivery MUST be signed over its content and a timestamp.
 
 A delivery that fails MUST be retried with backoff.
 
@@ -62,7 +65,7 @@ A failing or slow destination MUST NOT affect the session whose events it receiv
 
 A destination MUST be registered per tenant and referenced by name.
 
-A definition MUST NOT name a destination by arbitrary address.
+A definition MUST NOT specify a destination by an arbitrary address.
 
 A delivery MUST leave through the egress point.
 

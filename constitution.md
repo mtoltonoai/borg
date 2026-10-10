@@ -1,19 +1,20 @@
-# Borg Constitution
+# Constitution
 
-> **What this document is.** The non-negotiable invariants of the borg platform and the products
-> built beside it, stated as normative requirements. Every other specification, the contracts under
-> `spec/contracts/` and the capability specifications under `spec/capabilities/`, inherits these and
-> must not contradict them. The architecture these invariants serve is described in
+> **What this document is.** The fixed invariants of the platform and the products built beside it, stated as normative requirements. Every other specification, the contracts under
+> `spec/contracts/`, the core specifications under `spec/core/`, and the outcome specifications under
+> `spec/decisions/`, inherits these and must not contradict them. `spec/decisions/` holds the decisions, a register of deferred decisions, and
+> their outcomes: one document per decision, and one directory per decision or fixed default holding the
+> requirements that apply only under each outcome. The architecture these invariants serve is described in
 > [spec/overview.md](./spec/overview.md); the vocabulary they use is defined in
 > [spec/glossary.md](./spec/glossary.md). The general tenets and the platform tenets P1 to P7 are stated
-> as the Core Principles and the Platform Principles of this document.
+> as the Core Principles and the Platform Principles of this document. How an implementer builds from this
+> specification is described in [spec/README.md](./spec/README.md).
 >
-> The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** are to be interpreted
-> as described in RFC 2119. Each requirement below is a single self-contained sentence under a stable
+> The key words **MUST** and **MUST NOT** state an absolute requirement; **SHOULD** and **SHOULD NOT** state a requirement that an implementation may set aside only with a recorded reason; **MAY** states an optional behavior. Every other specification uses these key words with this meaning. Each requirement below is a single self-contained sentence under a stable
 > heading, so it can be extracted and cited exactly. A requirement's identity is the tuple (this file,
 > its section, its quoted sentence); there are no separate identifiers, and changing a sentence's wording
-> flags every citation that no longer matches it. A requirement names no concrete engine, store,
-> provider, library, or numeric default; those are recorded in [spec/defaults.md](./spec/defaults.md).
+> flags every citation that no longer matches it. A requirement mentions no concrete engine, store,
+> provider, library, or numeric default; those are recorded in [spec/record.md](./spec/record.md).
 
 ## Core Principles
 
@@ -29,8 +30,7 @@ than designed ahead of them.
 
 A component MUST NOT poll a dependency for a change that the dependency can notify it of.
 
-A session MUST be woken by an event, a timer, or a deadline addressed to it, rather than by an interval
-that asks whether there is work.
+A session MUST be woken by an event, a timer, or a deadline addressed to it, rather than by a periodic check for work.
 
 ### III. Everything Is Observable
 
@@ -48,8 +48,7 @@ replaced by a simulator.
 
 Every external dependency MUST have a simulator that injects the failures the real dependency exhibits.
 
-A simulator MUST be kept honest by a contract test that runs the same expectations against the simulator
-and against the real dependency.
+A simulator MUST be verified by a contract test that runs the same expectations against the simulator and against the real dependency.
 
 A component MUST take its entropy from the simulation's entropy source rather than from an ambient
 source of randomness.
@@ -77,11 +76,11 @@ Whether a change is correct MUST be decided by a mechanism rather than by an app
 
 A decision MUST reach a person only when no mechanism can decide it.
 
-A decision that reached a person MUST be recorded as a candidate for hardening into a mechanism.
+A decision that reached a person MUST be recorded as a candidate for conversion into a mechanism.
 
 ## Platform Principles
 
-### P1. The Core Executes And Decides Nothing It Can Be Told
+### P1. The Core Executes And Decides No Policy That Configuration Can Supply
 
 The core MUST execute sessions, deliver events, call models, run tools, and persist state without
 deciding any policy a tenant could supply as configuration.
@@ -108,7 +107,7 @@ core.
 
 ### P5. Durable State, Disposable Memory
 
-Every part of a session's state MUST live in the durable store.
+Every part of a session's state MUST be kept in the durable store.
 
 Everything a node holds in memory MUST be a cache that can be dropped and rebuilt from the durable
 store at any moment.
@@ -133,7 +132,7 @@ The platform MUST NOT execute tenant-supplied code other than a decider running 
 
 A tool MUST be a service the platform calls rather than code the platform hosts.
 
-An agent definition MUST be served by a tenant's own source rather than written into the platform.
+An agent definition MUST be data the tenant supplies rather than code written into the platform.
 
 ### Irreversible Choices Are Decided First
 
@@ -142,18 +141,17 @@ durable record is written.
 
 A property that can be added later without rewriting existing data MAY be deferred until use demands it.
 
-## Governance Floors
+## Protected Guarantees
 
-These are the minimum floors that no evolution policy may lower. They exist because the discipline that
-governs how these specifications change is itself amendable; these floors bound that self-amendment.
+These are the minimum guarantees that no evolution policy may weaken. They exist because the discipline that governs how these specifications change is itself amendable; these guarantees bound that self-amendment.
 
 ### The Tenant Is The Boundary
 
-Every durable record, principal, grant, subscription, and event MUST name its tenant.
+Every durable record, principal, grant, subscription, and event MUST carry its tenant.
 
 Content derived from one tenant's data MUST NOT reach another tenant.
 
-Every tenant's keys MUST root in a root key dedicated to that tenant, whether the tenant's own or one the service holds for it.
+Every tenant's keys MUST derive from a root key dedicated to that tenant, whether the tenant's own or one the service holds for it.
 
 Destroying a tenant's root key MUST make the tenant's data unreadable everywhere, backups included.
 
@@ -168,7 +166,7 @@ Delegated authority MUST only narrow from grantor to grantee.
 
 A human sign-on credential MUST NOT be used to run automation.
 
-### Secrets Never Enter The Model's World
+### Secrets Never Reach The Model Or The Records
 
 A secret MUST NOT appear in model context, a transcript, session state, an event, an observation record,
 a metric, or a log.
@@ -177,7 +175,7 @@ a metric, or a log.
 
 An agent MUST NOT hold a capability to approve a change.
 
-Authority MUST be widened only by a sound checker or by a person named by the tenant's governance.
+Authority MUST be widened only by a sound checker or by a person the tenant's governance designates.
 
 ### Security Guarantees Are Never Downgradable
 
@@ -201,17 +199,18 @@ Every event MUST carry the access scope its source allowed, from the first event
 
 An amendment to this constitution MUST be recorded with its rationale.
 
-An amendment that weakens a governance floor MUST require explicit human approval.
+An amendment that weakens a protected guarantee MUST require explicit human approval.
 
 ## Governance
 
 This constitution supersedes all other specifications where they conflict on an invariant. The contracts
 under `spec/contracts/` pin the interfaces that independently deployed parties honor across versions; the
-capability specifications under `spec/capabilities/` describe behavior that must satisfy these
-invariants. Compliance is checked by the requirement gate described in
-[spec/capabilities/simulation-and-conformance.md](./spec/capabilities/simulation-and-conformance.md),
+core specifications under `spec/core/` describe the behavior every valid solution has, and the outcome
+specifications under `spec/decisions/` describe the behavior that applies only under an adopted outcome;
+both must satisfy these invariants. Compliance is checked by the requirement gate described in
+[spec/core/simulation-and-conformance.md](./spec/core/simulation-and-conformance.md),
 under which every gating requirement here carries an implementation citation and a test citation, while a governing requirement binds to the change-process check, and by the
 simulation scenarios that exercise the invariants. Amendments follow the Amendment Discipline above and
 are traced against the architecture in [spec/traceability.md](./spec/traceability.md).
 
-**Version**: 0.1.0 | **Ratified**: 2026-10-08 | **Last Amended**: 2026-10-08
+**Version**: 0.2.0 | **Ratified**: 2026-10-08 | **Last Amended**: 2026-10-09
