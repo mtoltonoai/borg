@@ -20,9 +20,7 @@ The specification is an invariant core plus guided decisions: one constitution, 
 
 Borg is specifications-only. Authored implementation specifications and proposals are organized under `spec/impl/<id>/`. The current implementation identifier is `v1`; it is not a protocol version.
 
-The actual implementation repository is [borg-runtime](../borg-runtime/README.md). Duvet Cap, its tests and installed tools, generated reports, retained execution evidence, and build caches reside there. Authored decisions, capability declarations, phase specifications and proposals remain in [the v1 specification area](spec/impl/v1/README.md). No executable implementation or archived code is kept in Borg outside repository metadata.
-
-The copied specification snapshot and target lock remain unchanged in the implementation repository. Historical evidence retains its original subject identities and has explicit, phase-scoped relocation maps; it is not silently reused as current proof. This separation neither adopts capability/milestone proposals nor activates the collaboration outcome.
+Implementation code, tests, tooling and generated artifacts reside in separate implementation repositories. Authored implementation specifications and proposals remain here; see [the v1 specification area](spec/impl/v1/README.md).
 
 Each implementation identifies its exact immutable shared-specification target. A commit identifier plus the shared-specification path is one possible reference to committed content, not a mandated technology. Uncommitted source bytes need their own exact snapshot identity; an existing commit label cannot describe them. Current locks and historical evidence are not silently retargeted. See [Implementation Organization](spec/core/implementation-organization.md#implementation-organization) and [the descriptive layout record](spec/record.md#implementation-organization).
 

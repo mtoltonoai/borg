@@ -6,7 +6,7 @@ This document is the single authored capability source in the linked [implementa
 
 The complete graph has 26 capabilities and 87 edges. The pinned shared evaluation source is distinct from the preserved runtime target.
 
-Source snapshot: 06eff314bba416bd6d67b578d8dfc7b579dc1bf157abd7b364647bf77aed48ae
+Source snapshot: 4b531d2687afaf7d3d738f4ba3188b418d145a5d2ce614be0050a36162e7cdc4
 
 Source selection digest: ebdb22e2919cc7600b9402309994f2e73271796ad15c80601737f64cae6b9322
 
