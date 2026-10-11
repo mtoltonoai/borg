@@ -1,6 +1,6 @@
 # Core: Simulation And Conformance
 
-> **CORE SPECIFICATION.** Behavior and invariants that hold under every outcome of every decision, free of implementation detail. This document defines how the platform is tested so that its invariants are checked, not asserted: every dependency under a simulator verified by a contract test, the invariants every scenario checks, and the requirement gate that maps every requirement here to the code and test that satisfy it. Requirements realize [Core Principle IV](../../constitution.md) and [Core Principle VII](../../constitution.md) and trace to [overview section 15](../overview.md).
+> **CORE SPECIFICATION.** Behavior and invariants that hold under every outcome of every decision, free of implementation detail. This document defines how multiple implementations share the specification and keep their evidence attributable, and how the platform is tested so that its invariants are checked, not asserted: every dependency under a simulator verified by a contract test, the invariants every scenario checks, and the requirement gate that maps every requirement here to the code and test that satisfy it. Requirements realize [Core Principle IV](../../constitution.md) and [Core Principle VII](../../constitution.md) and trace to [overview section 15](../overview.md).
 >
 > The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly one obligation, under a stable heading. The simulation framework, the entropy source, and the gate tool are declared defaults.
 
@@ -8,6 +8,50 @@
 
 A design's invariants are established by the tests that check them. This document fixes that everything runs under deterministic simulation, that every external dependency has a simulator a contract test verifies against the real dependency, that the gating invariants are checked on every scenario, and that every
 requirement in this specification binds to code and a test that exercises it. Whether a specification product exists beyond this gate is a fixed default, gate-only, recorded in [spec/record.md](../record.md) part A; its alternative is the entry "The Specification As A Product" in [spec/decisions/deferred.md](../decisions/deferred.md), and the requirements that apply only under the product alternative are in spec/decisions/conformance-product/.
+
+## Implementation Organization
+
+### Implementations Share One Contract
+
+The specification repository MUST allow authored implementation specifications for multiple implementations of the shared specification.
+
+Implementations described in the specification repository MUST share one authoritative specification.
+
+Each implementation MUST have a stable implementation identifier.
+
+Each implementation's authored implementation specification MUST occupy a distinct implementation directory in the specification repository.
+
+An implementation's source code, tests, tooling, and generated artifacts MUST be kept in an implementation repository separate from the specification repository.
+
+An implementation's authored decisions, capability declarations, and phase declarations MUST be kept in its implementation specification.
+
+### Each Implementation Identifies Its Target
+
+Each implementation MUST declare a target reference that resolves to the exact immutable shared-specification source it targets.
+
+### Evidence Is Attributed To Its Implementation
+
+Implementation evidence MUST identify the implementation it concerns.
+
+An implementation's planning associations MUST remain separate from its implementation citations, test citations, and conformance results.
+
+An implementation's conformance claim MUST NOT be discharged by another implementation's citations or execution results.
+
+### Shared Tests Keep Results Separate
+
+Shared conformance test definitions MAY be kept outside implementation directories.
+
+A result of a shared conformance test MUST be attributable to the implementation it exercised.
+
+### Generated Artifacts Are Separate
+
+Generated artifacts MUST be kept separate from authored sources.
+
+The requirement identities and evaluation snapshots remain those specified under [Identity Is The Quoted Sentence](#identity-is-the-quoted-sentence) and [The Gate Evaluates Against An Immutable Snapshot](#the-gate-evaluates-against-an-immutable-snapshot). Evidence provenance remains subject to [The Record Identifies Its Subject](../contracts/evidence-record.md#the-record-identifies-its-subject), [The Record Identifies The Property](../contracts/evidence-record.md#the-record-identifies-the-property), and [The Record Is Reproducible](../contracts/evidence-record.md#the-record-is-reproducible). No particular source-control technology is required by this organization mechanism.
+
+These organization requirements concern design, change process, and attribution of evidence under [A Governing Requirement Binds To The Change Process](#a-governing-requirement-binds-to-the-change-process); their classification is recorded with the declared defaults. They remain requirements and remain visible in the raw extracted inventory. This section does not make planning associations evidence of runtime behavior or weaken existing execution and promotion rules.
+
+An implementation identifier identifies a realization of the shared specification, not a wire or protocol version. This organization mechanism introduces no version-negotiation or adapter requirement; existing protocol and durable-format compatibility requirements continue to apply. The concrete directory layout is recorded descriptively in [the decision record](../record.md#implementation-organization). Recording the organization does not migrate existing work or approve implementation-specific proposals.
 
 ## Deterministic Simulation
 

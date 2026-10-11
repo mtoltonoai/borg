@@ -1,0 +1,549 @@
+{
+  "capabilities": {
+    "API": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "AUTH": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "B": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "C": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CFG": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CO": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "COLLAB": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "D": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DA": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DR": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DV": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "E": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "ED": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "FEED": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "G": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "H": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "L": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "M": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "O": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "R": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "S": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SF": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SIM": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SR": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "T": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "X": {
+      "approval": "proposed",
+      "approval_ref": ""
+    }
+  },
+  "milestones": {
+    "API_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "API_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "API_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "AUTH_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "AUTH_S2": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "AUTH_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "AUTH_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "AUTH_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "AUTH_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "B_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "B_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CFG_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CFG_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CFG_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CFG_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "COLLAB_S1": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "COLLAB_S2_RECORDS": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "COLLAB_S3_TASKS": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "COLLAB_S5_AGENT_LINK": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "COLLAB_S5_DECISIONS": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "COLLAB_S5_VIEWERS": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "COLLAB_S6_QUALIFICATION": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-platform"
+    },
+    "CO_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CO_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "CO_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "C_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "C_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "C_S4_FIRST": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "C_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DA_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DA_S2": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DR_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DR_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DR_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DV_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "DV_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "D_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "D_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "D_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "D_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "ED_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "ED_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "ED_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "ED_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "E_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "E_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "E_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "FEED_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "FEED_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "FEED_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "FEED_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "G_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "G_S2": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "G_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "G_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "G_S7": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "H_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "H_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "H_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "H_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "H_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "L_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "L_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "L_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "M_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "M_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "M_S4_FIRST": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "M_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "O_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "O_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "O_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "O_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "R_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "R_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "R_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SF_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SF_S2": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SF_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SF_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SF_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SIM_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SIM_S2": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SIM_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SIM_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SR_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SR_S2": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "SR_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "S_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "S_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "S_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "S_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "T_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "T_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "T_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "T_S6": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "X_S1": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "X_S3": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "X_S4": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "X_S4_VIEW": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "X_S5": {
+      "approval": "proposed",
+      "approval_ref": ""
+    }
+  },
+  "provenance": {
+    "decisions.md": "d688d29e100118d426b1f6619686fa1088ebe36150e6a6548a046a49e71f36ce"
+  },
+  "schema_version": 1,
+  "source_hashes": {
+    "capabilities": "f488bef2acfb4cab288203b454f7f8b07ba7cac5ce84a1a86adbd6d9ca9f0fb3",
+    "main": "f52a7e2d9fb24cd2e89f899729b9bce58883504171506cfaa9209f36ca54d176",
+    "phases": "a6255f2cab65db5159ac1eb5f1e6b4ef1da0dfcf17f291b68e468cbda4be0a7e"
+  },
+  "stages": {
+    "S1": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#seven-stage-delivery"
+    },
+    "S2": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#seven-stage-delivery"
+    },
+    "S3": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#seven-stage-delivery"
+    },
+    "S4": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#seven-stage-delivery"
+    },
+    "S5": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#seven-stage-delivery"
+    },
+    "S6": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#seven-stage-delivery"
+    },
+    "S7": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#seven-stage-delivery"
+    }
+  }
+}

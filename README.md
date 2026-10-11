@@ -1,6 +1,6 @@
 # The Specification
 
-This repository holds the requirements for a multi-tenant agent platform and the products built beside it, written to describe the shape of a valid solution independent of any implementation. The code that implements it is kept in other repositories; that code cites these requirements, and where the two disagree, the specification is the authority unless it is deliberately changed.
+This repository holds the requirements for a multi-tenant agent platform and the products built beside it, written to describe the shape of a valid solution independent of any implementation. Authored specifications for multiple implementations can be kept here; implementation code, tests, tooling and generated artifacts belong in separate implementation repositories, with evidence attributable to their exact shared-specification targets. Where an implementation and the shared requirements disagree, the specification is the authority unless it is deliberately changed.
 
 The specification is an invariant core plus guided decisions: one constitution, the contracts, the core every valid solution has, two guided decisions and six fixed defaults with the requirements of each outcome in a file of its own, a register of deferred decisions, a decision record, and a requirement gate that lists exactly the adopted outcomes and the fixed defaults. An agent working here starts at [AGENTS.md](AGENTS.md).
 
@@ -15,6 +15,16 @@ The specification is an invariant core plus guided decisions: one constitution, 
 - **[spec/contracts/](spec/contracts/)**: the interfaces independently deployed parties honor across versions: the signed assertion, the definition source, the decision hook, the event hook, the event envelope, the tool call, the usage record, the evidence record, and the stored form. A change to one is additive or carries a version increment and a migration path.
 - **[spec/traceability.md](spec/traceability.md)**: the bidirectional map between every normative file and the overview sections it realizes. Descriptive.
 - **[AGENTS.md](AGENTS.md)**: the entry point for an agent that builds from this specification or edits it.
+
+## Implementation Organization
+
+Borg is specifications-only. Authored implementation specifications and proposals are organized under `spec/impl/<id>/`. The current implementation identifier is `v1`; it is not a protocol version.
+
+The actual implementation repository is [borg-runtime](../borg-runtime/README.md). Duvet Cap, its tests and installed tools, generated reports, retained execution evidence, and build caches reside there. Authored decisions, capability declarations, phase specifications and proposals remain in [the v1 specification area](spec/impl/v1/README.md). No executable implementation or archived code is kept in Borg outside repository metadata.
+
+The copied specification snapshot and target lock remain unchanged in the implementation repository. Historical evidence retains its original subject identities and has explicit, phase-scoped relocation maps; it is not silently reused as current proof. This separation neither adopts capability/milestone proposals nor activates the collaboration outcome.
+
+Each implementation identifies its exact immutable shared-specification target. A commit identifier plus the shared-specification path is one possible reference to committed content, not a mandated technology. Uncommitted source bytes need their own exact snapshot identity; an existing commit label cannot describe them. Current locks and historical evidence are not silently retargeted. See [Implementation Organization](spec/core/simulation-and-conformance.md#implementation-organization) and [the descriptive layout record](spec/record.md#implementation-organization).
 
 ## The Requirement Model
 
@@ -44,7 +54,7 @@ Every normative statement is a single sentence that uses one of the five key wor
 
 ## The Gate
 
-The gate is configured in [.duvet/config.toml](.duvet/config.toml). The requirement side lists the normative files, maintained by hand, each block with `format = "markdown"` set; the code side is the globs of the code that cites them, which lives in the implementing repositories. A citation is two markers in the code: the first, `//= <file>#<section>`, gives the file and the section of the requirement, and the second, `//# <exact sentence>`, quotes the requirement's sentence; the gate matches the quoted text against the section, so a reworded requirement invalidates every stale citation. A requirement is covered only when it has both an implementation citation and a test citation that exercises the behavior. The rules the gate enforces are stated normatively in [spec/core/simulation-and-conformance.md](spec/core/simulation-and-conformance.md); whether conformance is checked beyond the gate is a fixed default (gate-only) whose alternative is the entry "The Specification As A Product" in [spec/decisions/deferred.md](spec/decisions/deferred.md).
+The gate is configured in [.duvet/config.toml](.duvet/config.toml). The requirement side lists the normative files, maintained by hand, each block with `format = "markdown"` set; the code side is the globs of the implementation code that cites them. Under the organization mechanism, each evaluated implementation has separately scoped citations and results in its implementation repository. The shared configuration retains its original selection and gate policy; implementation checks use explicit isolated source roots and attributable reports. Borg contains no implementation sources for its legacy source globs to match. A citation is two markers in the code: the first, `//= <file>#<section>`, gives the file and the section of the requirement, and the second, `//# <exact sentence>`, quotes the requirement's sentence; the gate matches the quoted text against the section, so a reworded requirement invalidates every stale citation. A requirement is covered only when it has both an implementation citation and a test citation that exercises the behavior. The rules the gate enforces are stated normatively in [spec/core/simulation-and-conformance.md](spec/core/simulation-and-conformance.md); whether conformance is checked beyond the gate is a fixed default (gate-only) whose alternative is the entry "The Specification As A Product" in [spec/decisions/deferred.md](spec/decisions/deferred.md).
 
 ```sh
 # extract the requirements of one file (the output directory must end with a slash)

@@ -198,14 +198,14 @@ format = "markdown"
 
 # ---- fixed defaults: reopened only on the trigger in spec/decisions/deferred.md
 
-# fixed default: collaboration-platform; default: none (no file)
+# selected collaboration-platform outcome: build
 # [[specification]]
 # source = "spec/decisions/collaboration-platform/adapt.md"
 # format = "markdown"
 
-# [[specification]]
-# source = "spec/decisions/collaboration-platform/build.md"
-# format = "markdown"
+[[specification]]
+source = "spec/decisions/collaboration-platform/build.md"
+format = "markdown"
 
 # fixed default: session-management; default: imperative
 [[specification]]

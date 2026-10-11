@@ -126,13 +126,19 @@ as any other configuration.
 
 ## Boundaries Of The Platform
 
-### The Platform Hosts No Programs For Its Tenants
+### Tools Execute Through Governed Interfaces
 
-The platform MUST NOT execute tenant-supplied code other than a decider running in the sandbox.
+The platform MUST NOT execute tenant-supplied code except as a decider running in the sandbox or through governed tool execution.
 
-A tool MUST be a service the platform calls rather than code the platform hosts.
+A tool MUST execute through a governed interface separate from the agent's reasoning loop.
+
+A tool MAY be hosted within the platform.
+
+A tool MAY be provided by an external service.
 
 An agent definition MUST be data the tenant supplies rather than code written into the platform.
+
+This boundary separates tool implementations from reasoning logic through governed interfaces; it does not require a separate process, container, sandbox, or host. Tool execution remains subject to the existing loaded-definition, governance, identity, credential, durability, fencing, recovery, and isolation requirements. The amendment permits tools hosted within the platform as well as external services, because the location of a tool does not determine whether its execution is governed. It replaces the previous platform-wide hosting prohibition without changing the protected guarantees or the restrictions on platform nodes.
 
 ### Irreversible Choices Are Decided First
 
@@ -213,4 +219,4 @@ under which every gating requirement here carries an implementation citation and
 simulation scenarios that exercise the invariants. Amendments follow the Amendment Discipline above and
 are traced against the architecture in [spec/traceability.md](./spec/traceability.md).
 
-**Version**: 0.2.0 | **Ratified**: 2026-10-08 | **Last Amended**: 2026-10-09
+**Version**: 0.2.0 | **Ratified**: 2026-10-08 | **Last Amended**: 2026-10-11

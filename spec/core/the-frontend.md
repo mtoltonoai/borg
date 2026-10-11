@@ -4,7 +4,7 @@
 > of implementation detail. This document defines the one authenticated API through which anything calls
 > the platform: onboarding, governance, emergency controls, the data plane, the tail, webhooks in, and
 > event hooks out. Requirements realize [Platform Principle P4](../../constitution.md),
-> [Boundary "The Platform Hosts No Programs For Its Tenants"](../../constitution.md), and
+> [Boundary "Tools Execute Through Governed Interfaces"](../../constitution.md), and
 > [Protected Guarantee "Identity Comes From Authentication"](../../constitution.md) and trace to
 > [overview section 12](../overview.md).
 >
