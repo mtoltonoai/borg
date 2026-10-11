@@ -1,12 +1,12 @@
 # Core: Tools And Dispatch
 
-> **CORE SPECIFICATION.** Behavior and invariants that hold under every outcome of every decision, free of implementation detail. This document defines the loaded definition as the tool registry, the dispatch of a tool call as a durable operation, the native tools the platform implements itself, sub-sessions and forks, and the rule that everything else is a service. Requirements realize [Boundary "The Platform Hosts No Programs For Its Tenants"](../../constitution.md) and [Platform Principle P6](../../constitution.md) and trace to [overview section 5](../overview.md).
+> **CORE SPECIFICATION.** Behavior and invariants that hold under every outcome of every decision, free of implementation detail. This document defines the loaded definition as the tool registry, the dispatch of a tool call as a durable operation, the native tools the platform implements itself, sub-sessions and forks, and the rule that everything else is a service. Requirements realize [Boundary "Tools Execute Through Governed Interfaces"](../../constitution.md) and [Platform Principle P6](../../constitution.md) and trace to [overview section 5](../overview.md).
 >
 > The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly one obligation, under a stable heading. The wire shapes are pinned by the [tool-call contract](../contracts/tool-call.md); the tool protocol is a declared default.
 
 ## Purpose And Scope
 
-Tools are services, and the agent's definition lists them. This document fixes what the platform does
+Tools execute through governed interfaces separate from the agent's reasoning loop, and the agent's definition lists them. Tool services may be hosted within the platform or provided externally; hosting does not make a service a native tool or change who owns the model loop. This document fixes what the platform does
 with that list: refuse anything not on it, gate and record every call, lease credentials by reference,
 commit results as state, and recover by each tool's semantics. It also fixes the small set of native
 tools and the shape of sub-sessions and forks. Where agents run code is a fixed default, none (agents run no code of their own, and every tool they call is a service), recorded in [spec/record.md](../record.md) part A; its alternatives are the entry "Where Agents Run Code: Existing Runners Or The Workspace Service" in [spec/decisions/deferred.md](../decisions/deferred.md), and the requirements under each alternative are in spec/decisions/workspace-service/.
@@ -80,7 +80,7 @@ A tool call MUST be resolved against the session's loaded definition before anyt
 
 A tool call MUST pass the tool-call hook before it is recorded.
 
-A dispatch record MUST be committed before the call is sent.
+A dispatch record MUST be committed before the call is sent or begins execution.
 
 Credential leasing for a tool call is specified in spec/core/identity-delegation-and-secrets.md.
 

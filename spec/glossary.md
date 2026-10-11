@@ -8,6 +8,17 @@
 
 ---
 
+## Implementation organization
+
+- **Shared specification**: the authoritative constitution, contracts, core requirements, and applicable outcome requirements that implementations target; immutable evaluation copies do not create another authored contract.
+- **Implementation**: one realization of the shared specification, with its own authored decisions, source, tests, tooling, and attributable evidence.
+- **Implementation identifier**: a stable identity for one implementation, not a wire or protocol version.
+- **Implementation directory**: the distinct area of the specification repository holding one implementation's authored specification and proposals, identified by its stable implementation identifier.
+- **Implementation repository**: the separate repository holding an implementation's source code, tests, tooling and generated artifacts; it consumes an exact shared-specification target without becoming a second specification authority.
+- **Implementation specification**: the authored documents containing one implementation's decisions, capability declarations, and phase declarations, distinct from the shared specification and from generated views.
+- **Target reference**: a resolvable reference identifying the exact immutable shared-specification source an implementation targets; the existing gate-snapshot and evidence-record rules govern evaluations of that source.
+- **Implementation evidence**: requirement-linked planning associations, implementation and test citations, and execution or conformance results attributable to an implementation; planning associations do not establish runtime behavior, and evidence records remain subject to their existing contract.
+
 ## The platform and its parties
 
 - **Platform**: the multi-tenant agent harness this specification defines: it runs sessions, delivers
@@ -129,9 +140,13 @@
 
 ## Turns, models, and context
 
+- **Reasoning loop**: the agent's logical processing of model requests and replies, including requesting tool calls and incorporating their results. A tool implementation performs its work through a governed interface separately from that reasoning logic. This distinction imposes no process or host boundary and does not remove dispatch or result sequencing from the model loop or tool calls from a turn.
+- **Governed tool execution**: tool execution admitted through the loaded definition and tool-call hook, recorded durably before effects, and subject to the existing identity, credential, fencing, recovery, and tool-result requirements, whether the tool is hosted within the platform or provided by an external service.
+
 - **Turn**: one model request and its reply, with the tool calls the reply makes. A **step** is the unit
   of durable progress within it. A **model attempt** is one request, identified by an attempt id that is
   its idempotency key.
+- **Turn reply**: the reply belonging to one turn; this term does not fix how the reply is divided among streamed or separately delivered output.
 - **Provider**: the party whose model answers, through a **model endpoint**; each provider has a wire format the platform renders to and decodes from.
 - **Capacity source**: an account, a region, and a model endpoint reached through a role. A tenant's record configures its capacity sources; a request for a tenant with none configured is refused.
 - **Scheduler**: the per-node component every model call passes through: it admits by priority then
@@ -157,6 +172,11 @@
 - **Provider state**: opaque provider-bound content (reasoning, compaction items) the platform
   round-trips unmodified.
 - **Charter**: the prompt components of a definition that state an agent's identity and purpose.
+- **Charter revision**: the exact authoritative source of a charter, distinguished from its rendered or compacted representations.
+- **Charter revision reference**: a reference that resolves to the complete authoritative source of one charter revision.
+- **Charter clause**: a requirement in the authoritative charter source, identified by its source file, section, and exact sentence.
+- **Charter clause reference**: a stable authored reference that resolves to a charter clause within a specified charter revision; it locates the clause's requirement identity rather than replacing that identity.
+- **Charter-reference metadata**: structured data attached to a turn reply that identifies its charter revision and governing charter clauses.
 - **Cohort**: the fraction of a definition's sessions that adopt a new version first (under the declarative alternative of the deferred entry "Declarative Root Sessions And A Reference Definition Source").
 - **Harness**: a program of the operator's that runs an agent's model loop: it builds model requests, reads
   replies, calls tools, and keeps its own context between requests. Distinct from the platform, which under
@@ -435,7 +455,7 @@
 - **Deferred decision**: a decision that is asked only when its trigger occurs, kept possible by an
   invariant in the core; the register is spec/decisions/deferred.md.
 
-## The collaboration platform (deferred alternative; spec/decisions/collaboration-platform/)
+## The collaboration platform (built outcome; spec/decisions/collaboration-platform/)
 
 - **Collaboration platform**: where people and agents work together, with boards, documents, chat, a wiki,
   and questions; toward the platform it is a tool server and an adapter, and a definition source under the declarative alternative of the deferred entry "Declarative Root Sessions And A Reference Definition Source" (under the build alternative of the deferred entry "A Collaboration Product: An Adapted Tool Or A Built Platform").
