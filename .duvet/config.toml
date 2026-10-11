@@ -161,6 +161,10 @@ source = "spec/core/simulation-and-conformance.md"
 format = "markdown"
 
 [[specification]]
+source = "spec/core/implementation-organization.md"
+format = "markdown"
+
+[[specification]]
 source = "spec/core/shared-framework.md"
 format = "markdown"
 
@@ -198,7 +202,8 @@ format = "markdown"
 
 # ---- fixed defaults: reopened only on the trigger in spec/decisions/deferred.md
 
-# selected collaboration-platform outcome: build
+# v1 selected collaboration-platform outcome: build
+# selection: spec/impl/v1/implementation.md#collaboration-platform; shared default: none
 # [[specification]]
 # source = "spec/decisions/collaboration-platform/adapt.md"
 # format = "markdown"

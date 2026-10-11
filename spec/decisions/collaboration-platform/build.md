@@ -1,6 +1,6 @@
 # Outcome: Build The Collaboration Platform
 
-> **OUTCOME SPECIFICATION.** These requirements apply when the decision record in [spec/record.md](../../record.md) selects this outcome, the built collaboration platform; they add to the core and never replace it. This document defines the collaboration platform where people and agents work together, and its role toward the agent platform as a tool server, as the adapter that gives meaning to events, and, where the declarative alternative for root sessions is adopted, as a definition source. It is a product built beside the platform and must not contradict the constitution. Requirements realize [Core Principle I](../../../constitution.md) and [Platform Principle P4](../../../constitution.md) and trace to [overview section 19](../../overview.md).
+> **OUTCOME SPECIFICATION.** These requirements apply when an implementation selects this outcome in its decision record, following [spec/record.md](../../record.md), the built collaboration platform; they add to the core and never replace it. This document defines the collaboration platform where people and agents work together, and its role toward the agent platform as a tool server, as the adapter that gives meaning to events, and, where the declarative alternative for root sessions is adopted, as a definition source. It is a product built beside the platform and must not contradict the constitution. Requirements realize [Core Principle I](../../../constitution.md) and [Platform Principle P4](../../../constitution.md) and trace to [overview section 19](../../overview.md).
 >
 > The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly one obligation, under a stable heading. The store, the live-update transport, and the identity providers are declared defaults.
 
@@ -74,7 +74,7 @@ A recovery entry for the operator team MUST be one-time, add-only, and applied o
 
 ### Lifecycle Intent Is The Only Pause Path
 
-This section governs the collaboration product's pause requests. Core emergency controls remain independently available and do not wait for this product, its records or its owner; effective lifecycle state retains the core's restrictiveness rules. The stable heading is retained for source identity continuity.
+This section governs non-emergency pause requests made through the collaboration product. The core already provides [emergency controls independent of the lifecycle owner](../../core/the-frontend.md#emergency-controls-work-without-the-owner-of-the-list), with [grant checks that tenant policy cannot block](../../core/governance.md#an-emergency-control-is-never-blocked-by-policy). Requiring every pause to pass through product lifecycle intent would contradict that boundary. The core's [safe-point timing](../../core/the-frontend.md#an-emergency-control-takes-effect-at-a-safe-point) and [most-restrictive lifecycle rules](../../core/the-frontend.md#the-effective-lifecycle-is-the-most-restrictive) still apply.
 
 An agent's run, paused, or retired intent MUST be the collaboration platform's mechanism for requesting a non-emergency pause of its sessions.
 

@@ -123,10 +123,11 @@ Two decisions are settled with the operator before building: tenancy scope, whic
 
 ### A Collaboration Product: An Adapted Tool Or A Built Platform
 
-- Selected: the native built collaboration platform. It organizes collaboration records and user interfaces over the shared framework's durability, events, identity and encryption components. Agent session state and operations remain accessible only through the agent platform's API.
-- Scope: task assignment and status, record-based waits and cycle checks, questions and document reviews, operator controls, the decision queue, lifecycle and status integration, ordered record revisions, recovery, viewers and housekeeping, subject to the build outcome's exact applicability conditions. This selection adds no task claim, task lease or goal entity.
-- Alternative retained: an adapter for an existing collaboration tool remains a possible later outcome change, not a simultaneously selected implementation. Declarative root-session management, human authority widening and workspace execution remain separate choices.
-- Selected requirements: spec/decisions/collaboration-platform/build.md; replaces: none. The adapted outcome remains unselected.
+- Available outcomes: an adapter for an existing collaboration tool, or a built collaboration platform with task assignment and status, record-based waits, questions, document reviews, operator controls, a decision queue, lifecycle/status integration and live views. The shared default is none; the tenant's systems use the frontend, webhooks, event hooks and tails.
+- Common boundary: authenticated callers access agent session state and operations through the platform API; the core does not interpret collaboration records. Declarative session management, human authority widening and workspace execution are separate choices.
+- Built outcome: product records reuse shared durability, events, identity and encryption mechanisms without a second agent-state subsystem or new task claim, task lease or goal semantics. The adapted outcome leaves the existing tool's record storage and domain behavior outside this specification.
+- Reopened when: an existing tool used to direct agents should remain the collaboration surface, or the required collaboration behavior calls for a built product. The implementation specification records the chosen outcome; the shared catalog does not select one for every implementation.
+- Requirements when selected: spec/decisions/collaboration-platform/adapt.md or spec/decisions/collaboration-platform/build.md; replaces: none. The checked-in v1 choice is recorded in [its implementation specification](../impl/v1/implementation.md#collaboration-platform).
 
 ### Declarative Root Sessions And A Reference Definition Source
 

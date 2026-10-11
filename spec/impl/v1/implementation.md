@@ -18,6 +18,8 @@ Direct execution.
 
 ### Collaboration Platform
 
+Selected shared outcome: [build](../../decisions/collaboration-platform/build.md). The shared collaboration default is none; v1 selects the native product to provide collaboration records and interfaces over the existing Borg framework. This is an implementation-specific choice.
+
 The v1 implementation MUST provide the native collaboration platform specified by COLLAB and its seven milestone declarations.
 
 The collaboration platform MUST reuse the existing shared-framework durability, events, change feeds, live streams, authentication, call guards, and encryption mechanisms for its product records.

@@ -6,9 +6,9 @@ This document is the single authored capability source in the linked [implementa
 
 The complete graph has 26 capabilities and 87 edges. The pinned shared evaluation source is distinct from the preserved runtime target.
 
-Source snapshot: 3a25c0f4df3ba736336cc30be3ca04b9ca17cf0052ce33c0a1cf426565644a74
+Source snapshot: 06eff314bba416bd6d67b578d8dfc7b579dc1bf157abd7b364647bf77aed48ae
 
-Source selection digest: abbe44f6d35320bc0a4e6cd82b9f020fa42db12e14dc0db7361e25cf57cff0d4
+Source selection digest: ebdb22e2919cc7600b9402309994f2e73271796ad15c80601737f64cae6b9322
 
 Source fields quote shared requirements by original file, stable section and exact sentence. They retain shared normative strength and applicability; they are references, not newly authored v1 obligations. Five collaboration clauses remain conditional-inactive under imperative session management.
 
@@ -2156,31 +2156,31 @@ Source: spec/core/simulation-and-conformance.md#the-gating-invariants | Every ev
 <!-- Allocation: G_S7#C_EVIDENCE_BOUND_FIELDS | runtime -->
 Source: spec/core/governance.md#reference-checks-produce-audit-information | A charter reference check MUST NOT be treated as proof of behavioral compliance.
 <!-- Allocation: G_S1#C_IMPL_TARGET_PIN | governance -->
-Source: spec/core/simulation-and-conformance.md#each-implementation-identifies-its-target | Each implementation MUST declare a target reference that resolves to the exact immutable shared-specification source it targets.
+Source: spec/core/implementation-organization.md#each-implementation-identifies-its-target | Each implementation MUST declare a target reference that resolves to the exact immutable shared-specification source it targets.
 <!-- Allocation: G_S7#C_IMPL_EVIDENCE_ISOLATION | governance -->
-Source: spec/core/simulation-and-conformance.md#evidence-is-attributed-to-its-implementation | Implementation evidence MUST identify the implementation it concerns.
+Source: spec/core/implementation-organization.md#evidence-is-attributed-to-its-implementation | Implementation evidence MUST identify the implementation it concerns.
 <!-- Allocation: G_S1#C_IMPL_EVIDENCE_ROLES | governance -->
-Source: spec/core/simulation-and-conformance.md#evidence-is-attributed-to-its-implementation | An implementation's planning associations MUST remain separate from its implementation citations, test citations, and conformance results.
+Source: spec/core/implementation-organization.md#evidence-is-attributed-to-its-implementation | An implementation's planning associations MUST remain separate from its implementation citations, test citations, and conformance results.
 <!-- Allocation: G_S7#C_IMPL_EVIDENCE_ISOLATION | governance -->
-Source: spec/core/simulation-and-conformance.md#evidence-is-attributed-to-its-implementation | An implementation's conformance claim MUST NOT be discharged by another implementation's citations or execution results.
+Source: spec/core/implementation-organization.md#evidence-is-attributed-to-its-implementation | An implementation's conformance claim MUST NOT be discharged by another implementation's citations or execution results.
 <!-- Allocation: G_S1#C_IMPL_GENERATED_SEPARATION | governance -->
-Source: spec/core/simulation-and-conformance.md#generated-artifacts-are-separate | Generated artifacts MUST be kept separate from authored sources.
+Source: spec/core/implementation-organization.md#generated-artifacts-are-separate | Generated artifacts MUST be kept separate from authored sources.
 <!-- Allocation: G_S1#C_IMPL_SHARED_AUTHORITY | governance -->
-Source: spec/core/simulation-and-conformance.md#implementations-share-one-contract | The specification repository MUST allow authored implementation specifications for multiple implementations of the shared specification.
+Source: spec/core/implementation-organization.md#implementations-share-one-contract | The specification repository MUST allow authored implementation specifications for multiple implementations of the shared specification.
 <!-- Allocation: G_S1#C_IMPL_SHARED_AUTHORITY | governance -->
-Source: spec/core/simulation-and-conformance.md#implementations-share-one-contract | Implementations described in the specification repository MUST share one authoritative specification.
+Source: spec/core/implementation-organization.md#implementations-share-one-contract | Implementations described in the specification repository MUST share one authoritative specification.
 <!-- Allocation: G_S1#C_IMPL_IDENTITY | governance -->
-Source: spec/core/simulation-and-conformance.md#implementations-share-one-contract | Each implementation MUST have a stable implementation identifier.
+Source: spec/core/implementation-organization.md#implementations-share-one-contract | Each implementation MUST have a stable implementation identifier.
 <!-- Allocation: G_S1#C_IMPL_IDENTITY | governance -->
-Source: spec/core/simulation-and-conformance.md#implementations-share-one-contract | Each implementation's authored implementation specification MUST occupy a distinct implementation directory in the specification repository.
+Source: spec/core/implementation-organization.md#implementations-share-one-contract | Each implementation's authored implementation specification MUST occupy a distinct implementation directory in the specification repository.
 <!-- Allocation: G_S1#C_IMPL_SOURCE_SEPARATION | governance -->
-Source: spec/core/simulation-and-conformance.md#implementations-share-one-contract | An implementation's source code, tests, tooling, and generated artifacts MUST be kept in an implementation repository separate from the specification repository.
+Source: spec/core/implementation-organization.md#implementations-share-one-contract | An implementation's source code, tests, tooling, and generated artifacts MUST be kept in an implementation repository separate from the specification repository.
 <!-- Allocation: G_S1#C_IMPL_SOURCE_SEPARATION | governance -->
-Source: spec/core/simulation-and-conformance.md#implementations-share-one-contract | An implementation's authored decisions, capability declarations, and phase declarations MUST be kept in its implementation specification.
+Source: spec/core/implementation-organization.md#implementations-share-one-contract | An implementation's authored decisions, capability declarations, and phase declarations MUST be kept in its implementation specification.
 <!-- Allocation: G_S7#C_IMPL_SHARED_TEST_ATTRIBUTION | governance -->
-Source: spec/core/simulation-and-conformance.md#shared-tests-keep-results-separate | Shared conformance test definitions MAY be kept outside implementation directories.
+Source: spec/core/implementation-organization.md#shared-tests-keep-results-separate | Shared conformance test definitions MAY be kept outside implementation directories.
 <!-- Allocation: G_S7#C_IMPL_SHARED_TEST_ATTRIBUTION | governance -->
-Source: spec/core/simulation-and-conformance.md#shared-tests-keep-results-separate | A result of a shared conformance test MUST be attributable to the implementation it exercised.
+Source: spec/core/implementation-organization.md#shared-tests-keep-results-separate | A result of a shared conformance test MUST be attributable to the implementation it exercised.
 
 ---
 

@@ -1,6 +1,6 @@
 # Traceability
 
-> **What this document is.** The bidirectional map between the normative documents and the architecture they realize. Every normative document (the constitution, the nine contracts, the fourteen core files, and every outcome file under spec/decisions/) traces to a section of [overview.md](./overview.md), the authority on intent, and every overview section is served by at least one document. This document is descriptive; it carries no requirements. It exists so that a change to intent and a change to a requirement can each be checked against the other.
+> **What this document is.** The bidirectional map between the normative documents and the architecture they realize. Every normative document (the constitution, the nine contracts, the fifteen core files, and every outcome file under spec/decisions/) traces to a section of [overview.md](./overview.md), the authority on intent, and every overview section is served by at least one document. This document is descriptive; it carries no requirements. It exists so that a change to intent and a change to a requirement can each be checked against the other.
 >
 > The decision documents (spec/decisions/tenancy-scope.md and spec/decisions/execution.md), the register of deferred decisions (spec/decisions/deferred.md), and the decision record (spec/record.md) are descriptive: they appear in the second table where they serve a section and do not appear in the first. An outcome file is listed whether or not the record adopts it, because what a document realizes does not depend on whether a deployment selected it; the gate configuration lists the adopted outcomes' files and the fixed defaults' files. The outcome files of a fixed default trace to the core section they refine and to section 19, where the default and its deferred alternatives are described.
 
@@ -33,6 +33,7 @@ The tool-boundary amendment in constitution section "Tools Execute Through Gover
 | `spec/core/failure-handling.md` | 14 |
 | `spec/core/durability-and-deployment.md` | 14 |
 | `spec/core/simulation-and-conformance.md` | 15 |
+| `spec/core/implementation-organization.md` | 15 |
 | `spec/core/shared-framework.md` | 16 |
 | `spec/decisions/tenancy-scope/one-tenant.md` | 8, 17 |
 | `spec/decisions/tenancy-scope/registration.md` | 8, 17 |
@@ -77,11 +78,11 @@ Paths in this table are relative to `spec/`, except `constitution.md`, which is 
 | 12. The frontend | core/the-frontend.md; contracts/event-hook.md |
 | 13. Observation, usage, and the improvement loop | core/observation-and-usage.md; contracts/usage-record.md; constitution.md |
 | 14. Failure handling, durability, and deployment | core/failure-handling.md; core/durability-and-deployment.md; constitution.md; decisions/durability/self-durable.md; decisions/durability/recovery-store.md |
-| 15. Deterministic simulation and conformance | core/simulation-and-conformance.md; constitution.md; decisions/conformance-product/product.md; record.md (descriptive, part B implementation organization) |
+| 15. Deterministic simulation and conformance | core/simulation-and-conformance.md; core/implementation-organization.md; constitution.md; decisions/conformance-product/product.md; record.md (descriptive, part B implementation organization) |
 | 16. Shared framework components | core/shared-framework.md |
 | 17. How many tenants, and when | decisions/tenancy-scope.md (descriptive); decisions/tenancy-scope/one-tenant.md; decisions/tenancy-scope/registration.md; decisions/tenancy-scope/cells.md; record.md (descriptive, part A) |
 | 18. How a session's model turns run | core/governance.md; decisions/execution.md (descriptive); decisions/execution/direct.md; decisions/execution/direct-model-turns-and-scheduling.md; decisions/execution/direct-context-compaction-and-cache.md; decisions/execution/hosted-harness.md; record.md (descriptive, part A) |
 | 19. Fixed defaults and deferred decisions | decisions/deferred.md (descriptive); record.md (descriptive, parts A and B); constitution.md; contracts/evidence-record.md; decisions/collaboration-platform/adapt.md; decisions/collaboration-platform/build.md; decisions/session-management/imperative.md; decisions/session-management/imperative-only.md; decisions/session-management/declarative.md; decisions/session-management/declarative-only.md; decisions/session-management/both.md; decisions/workspace-service/existing.md; decisions/workspace-service/build.md; decisions/authority-widening/checkers-only.md; decisions/authority-widening/human-approvals.md; decisions/authority-widening/record-based-autonomy.md; decisions/durability/self-durable.md; decisions/durability/recovery-store.md; decisions/conformance-product/product.md |
 | 20. Rationale | (descriptive; no normative file; the reasons for the invariants of part 1) |
 
-The specifications-only layout correction retains the Implementation Organization headings in core/simulation-and-conformance.md and their mapping to overview section 15. Four exact sentence identities change to separate authored implementation specifications from executable implementation content. The updated exact quotations and governing classification are in record.md under Implementation organization; historical citations keep their original identities.
+Implementation Organization is defined in core/implementation-organization.md and maps to overview section 15. Its thirteen requirement sentences retain their stable subordinate headings; their identities use that file rather than core/simulation-and-conformance.md. The updated exact quotations and governing classification are in record.md under Implementation organization; historical citations keep their original identities.
