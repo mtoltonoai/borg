@@ -6,7 +6,7 @@
 > that confidence comes from mechanism rather than from a human approval. Requirements realize
 > [Core Principle VII](../../constitution.md), [Platform Principle P2](../../constitution.md), and
 > [Protected Guarantee "Agents Never Approve"](../../constitution.md) and trace to
-> [overview section 6](../overview.md).
+> [overview sections 6 and 18](../overview.md).
 >
 > The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly
 > one obligation, under a stable heading. The decider kinds' engines and the request size bound are
@@ -192,6 +192,46 @@ Anything that acts on an external system MUST be a tool call gated before it run
 A live attach that sees output before it is gated MUST mark that output as ungated.
 
 A model's reasoning content MUST pass the structured-secret check.
+
+## Charter References
+
+### A Charter Has Normative Requirements
+
+A charter's behavioral requirements MUST use the normative key words with the meanings defined by the constitution.
+
+Each charter requirement MUST be a self-contained sentence carrying one obligation under a stable heading.
+
+### A Revision Identifies Authoritative Source
+
+A charter revision reference MUST resolve to the exact authoritative source of that revision under the applicable access and retention rules.
+
+A charter revision reference MUST reuse an existing source identity when that identity resolves the complete authoritative charter source.
+
+A rendered or compacted representation of a charter MUST NOT replace that charter's authoritative source.
+
+### Every Turn Reply Carries Charter References
+
+Every turn reply MUST carry structured charter-reference metadata.
+
+A turn reply's charter-reference metadata MUST identify the authoritative charter revision effective at that turn's boundary.
+
+A turn reply's charter-reference metadata MUST identify the specific charter clauses governing its response or actions.
+
+A charter clause reference MUST resolve to the clause's source file, section, and exact sentence within the identified charter revision.
+
+A turn reply's durable record MUST retain its charter-reference metadata.
+
+A record that cites a turn reply for audit inspection MUST preserve its association with that reply's charter-reference metadata.
+
+### Reference Checks Produce Audit Information
+
+The platform MUST check each turn reply's charter references against the authoritative charter revision effective for that turn.
+
+The platform MUST record invalid or mismatched charter references with the reply they came from for audit inspection.
+
+A charter reference check MUST NOT be treated as proof of behavioral compliance.
+
+These checks establish reference validity, not semantic compliance. This section requires audit recording and does not itself require corrective feedback, retry, reset, compaction, admission blocking, or a model judge. It does not prohibit separately authorized policy from consuming the audit records. Existing configuration adoption, output governance, and compaction requirements continue to apply. Streaming boundaries, empty applicability, and charter-specific retention rules remain unspecified by this section.
 
 ## Stop Admission
 

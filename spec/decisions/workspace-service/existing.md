@@ -6,7 +6,7 @@
 
 ## Purpose And Scope
 
-Under this outcome agents run code on runners the tenant operates: hosts or services that execute commands and builds. The platform hosts no program for a tenant, so a session reaches a runner only through a tool server the tenant builds or configures in front of the runners. The requirements below fix what that tool server guarantees; how it provisions and schedules runners is outside this specification.
+Under this outcome agents run code on runners the tenant operates: hosts or services that execute commands and builds. A session reaches a runner through the governed interface of a tool server the tenant builds or configures in front of the runners, separately from the agent's reasoning loop. The requirements below fix what that tool server guarantees; how it provisions and schedules runners is outside this specification.
 
 ## A Tool Server Listed In The Definition
 

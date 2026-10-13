@@ -1,22 +1,24 @@
 # Outcome: Build The Workspace Service
 
-> **OUTCOME SPECIFICATION.** These requirements apply only when the deferred entry "Where Agents Run Code: Existing Runners Or The Workspace Service" in [spec/decisions/deferred.md](../deferred.md) is reopened and this outcome, the workspace service, adopted; they add to the core and never replace it. This document defines the service that provides a session with disposable workspaces for shell, files, and builds: a tool server listed in the definition, with the session's identity on every call, a workspace's contents as a value, and no standing credentials inside. It is a product built beside the platform. Requirements realize [Boundary "The Platform Hosts No Programs For Its Tenants"](../../../constitution.md), [Protected Guarantee "Secrets Never Reach The Model Or The Records"](../../../constitution.md), and [Protected Guarantee "The Tenant Is The Boundary"](../../../constitution.md) and trace to [overview section 19](../../overview.md).
+> **OUTCOME SPECIFICATION.** These requirements apply only when the deferred entry "Where Agents Run Code: Existing Runners Or The Workspace Service" in [spec/decisions/deferred.md](../deferred.md) is reopened and this outcome, the workspace service, adopted; they add to the core and never replace it. This document defines the service that provides a session with disposable workspaces for shell, files, and builds: a tool server listed in the definition, with the session's identity on every call, a workspace's contents as a value, and no standing credentials inside. It is a tool service that may be hosted within the platform or provided externally. Requirements realize [Boundary "Tools Execute Through Governed Interfaces"](../../../constitution.md), [Protected Guarantee "Secrets Never Reach The Model Or The Records"](../../../constitution.md), and [Protected Guarantee "The Tenant Is The Boundary"](../../../constitution.md) and trace to [overview section 19](../../overview.md).
 >
 > The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly one obligation, under a stable heading. The substrate, the snapshot store, and the credential protocol are declared defaults.
 
 ## Purpose And Scope
 
-Coding roles require an execution environment, and the platform hosts none. This outcome fixes the service's guarantees: it is a tool server like any other, a workspace is disposable because its contents are a value, credentials are per call, and isolation holds across tenants. How the service provisions hosts is outside this specification.
+Coding roles require an execution environment supplied through a governed tool interface separate from the agent's reasoning loop. This outcome fixes the service's guarantees: it is a tool server like any other, a workspace is disposable because its contents are a value, credentials are per call, and isolation holds across tenants. How the service provisions hosts is outside this specification.
+
+The core is the generic caller of the service. A hosted service implementation remains distinct from that caller; its workspace leases belong to the service even when the platform provides it. Hosting permission selects no process or host arrangement. This outcome remains conditional on its adoption.
 
 ## A Service Listed In The Definition
 
-### It Is A Tool Server, Not Part Of The Platform
+### It Is A Tool Server Separate From The Reasoning Loop
 
 The service MUST be called as a tool server listed in an agent's definition.
 
 Every call to the service MUST carry the session's identity.
 
-The platform MUST contain no logic specific to what the service does beyond calling its tools.
+The core MUST contain no logic specific to what the service does beyond calling its tools.
 
 As a tool server, the service is bound by spec/contracts/tool-call.md and spec/contracts/signed-assertion.md, which pin assertion checks, lease generations, and call receipts.
 

@@ -9,6 +9,8 @@
 A design's invariants are established by the tests that check them. This document fixes that everything runs under deterministic simulation, that every external dependency has a simulator a contract test verifies against the real dependency, that the gating invariants are checked on every scenario, and that every
 requirement in this specification binds to code and a test that exercises it. Whether a specification product exists beyond this gate is a fixed default, gate-only, recorded in [spec/record.md](../record.md) part A; its alternative is the entry "The Specification As A Product" in [spec/decisions/deferred.md](../decisions/deferred.md), and the requirements that apply only under the product alternative are in spec/decisions/conformance-product/.
 
+Implementation identity, source organization and per-implementation evidence attribution are defined in [Implementation Organization](implementation-organization.md).
+
 ## Deterministic Simulation
 
 ### Everything Runs Under Simulation

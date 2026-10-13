@@ -4,7 +4,7 @@
 > definitions to the platform, and the shape of a definition itself. It is the interface a tenant's
 > source implements as a server and the platform implements as a client, and it is honored by
 > both across releases, since the two are released through separate pipelines. Its requirements realize
-> [Boundary "The Platform Hosts No Programs For Its Tenants"](../../constitution.md) and trace to
+> [Boundary "Tools Execute Through Governed Interfaces"](../../constitution.md) and trace to
 > [overview section 10](../overview.md). This contract is in force only when the deferred entry "Declarative Root Sessions And A Reference Definition Source" in [spec/decisions/deferred.md](../decisions/deferred.md) is reopened and the declarative or the both outcome adopted.
 >
 > The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly one obligation, under a stable

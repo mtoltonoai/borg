@@ -1,12 +1,12 @@
 # Outcome: Build The Collaboration Platform
 
-> **OUTCOME SPECIFICATION.** These requirements apply only when the deferred entry "A Collaboration Product: An Adapted Tool Or A Built Platform" in [spec/decisions/deferred.md](../deferred.md) is reopened and this outcome, the built platform, adopted; they add to the core and never replace it. This document defines the collaboration platform where people and agents work together, and its role toward the agent platform as a tool server, as the adapter that gives meaning to events, and, where the declarative alternative for root sessions is adopted, as a definition source. It is a product built beside the platform and must not contradict the constitution. Requirements realize [Core Principle I](../../../constitution.md) and [Platform Principle P4](../../../constitution.md) and trace to [overview section 19](../../overview.md).
+> **OUTCOME SPECIFICATION.** These requirements apply when an implementation selects this outcome in its decision record, following [spec/record.md](../../record.md), the built collaboration platform; they add to the core and never replace it. This document defines the collaboration platform where people and agents work together, and its role toward the agent platform as a tool server, as the adapter that gives meaning to events, and, where the declarative alternative for root sessions is adopted, as a definition source. It is a product built beside the platform and must not contradict the constitution. Requirements realize [Core Principle I](../../../constitution.md) and [Platform Principle P4](../../../constitution.md) and trace to [overview section 19](../../overview.md).
 >
 > The capitalized key words are normative, with the meaning the constitution gives them. Each requirement is a single self-contained sentence carrying exactly one obligation, under a stable heading. The store, the live-update transport, and the identity providers are declared defaults.
 
 ## Purpose And Scope
 
-The collaboration platform is where work is organized: boards, documents, chat, a wiki, and questions anyone can pose. Toward the agent platform it is a client and an adapter, never a client of the durable store. This outcome fixes the properties a valid implementation has, independent of the store or transport an implementation uses.
+The collaboration platform is where work is organized: boards, documents, chat, a wiki, and questions anyone can pose. Toward the agent platform it is a client and an adapter, with no direct access to the agent platform's internal session records. Collaboration records are product data over the shared framework's durable-store, change-feed, live-stream, authentication and call-guard mechanisms; the product does not provide a second implementation of those mechanisms. This reuse selects no new storage engine, physical store or deployment topology. The API boundary below continues to govern every access to agent session state and operations. This outcome fixes the properties a valid implementation has, independent of the store or transport an implementation uses.
 
 ## Scale And Shape
 
@@ -52,6 +52,8 @@ Authorization MUST fail closed.
 
 At most one runtime MUST be able to act as a given agent at any moment.
 
+Runtime exclusivity is not a task claim or lease and does not restrict the concurrent sessions that the agent platform permits for an agent identity. The mechanism for enforcing runtime exclusivity remains an implementation decision.
+
 The service MUST attest a person toward the agent platform only from the signed sign-in claims presented on the request, never from a stored copy.
 
 Each external bridge or ingest service MUST act under a service principal of its own.
@@ -72,9 +74,11 @@ A recovery entry for the operator team MUST be one-time, add-only, and applied o
 
 ### Lifecycle Intent Is The Only Pause Path
 
-An agent's run, paused, or retired intent MUST be the only way to pause its sessions.
+This section governs non-emergency pause requests made through the collaboration product. The core already provides [emergency controls independent of the lifecycle owner](../../core/the-frontend.md#emergency-controls-work-without-the-owner-of-the-list), with [grant checks that tenant policy cannot block](../../core/governance.md#an-emergency-control-is-never-blocked-by-policy). Requiring every pause to pass through product lifecycle intent would contradict that boundary. The core's [safe-point timing](../../core/the-frontend.md#an-emergency-control-takes-effect-at-a-safe-point) and [most-restrictive lifecycle rules](../../core/the-frontend.md#the-effective-lifecycle-is-the-most-restrictive) still apply.
 
-A pause requested through any path MUST take effect by setting that intent.
+An agent's run, paused, or retired intent MUST be the collaboration platform's mechanism for requesting a non-emergency pause of its sessions.
+
+A non-emergency pause requested through the collaboration platform MUST take effect by setting that intent.
 
 A check MUST report any agent whose intent and reported state differ.
 
@@ -97,6 +101,8 @@ A supersede by a principal other than the asker MUST pose the replacement under 
 When a record's owner changes, its open questions MUST stay open.
 
 ### A Decision Is Recorded Under The Principal That Made It
+
+A product question or go-ahead is a collaboration record, not an authority grant or a substitute for the platform's decision-hook protocol. Under checkers-only, a product answer cannot widen agent authority or route a core runtime decision request to a person. A task transition allowed by product rules remains subject to current platform policy and grants. Selecting this product does not select the human-approvals outcome.
 
 A question MUST be answered, and its answer superseded or withdrawn, only by the principal it is routed to, from an authenticated session.
 
