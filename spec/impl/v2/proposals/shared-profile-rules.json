@@ -1,0 +1,2369 @@
+{
+  "status": "HISTORICAL_INITIAL_REVIEW_SUPERSEDED",
+  "native_report_sha256": "ed072802712c5d0ab7c6425877b26bed2a2dc28aa29b30167e9fadb183bd5a4f",
+  "source_snapshot": "ae8c0fca8fe823f5bb53585dc12bd54c20058072de70f8510810f70e5f6867b1",
+  "native_total": 2105,
+  "codes": {
+    "R": "retain original where applicable; no implementation evidence",
+    "T": "proposed task-boundary replacement; not original conformance",
+    "D": "original feature absent under selected reduction",
+    "N": "additional proposed initial-release deferral, not adopted",
+    "C": "conditional feature or contract choice unresolved",
+    "U": "unresolved compatibility decision",
+    "A": "known keyword-definition extraction anomaly"
+  },
+  "files": {
+    "constitution.md": {
+      "section_dispositions": {
+        "agents-never-approve": "R",
+        "amendment-discipline": "R",
+        "constitution": "R",
+        "contracts-change-only-by-coordinated-act": "R",
+        "i-minimal-and-concrete": "R",
+        "identity-comes-from-authentication": "R",
+        "ii-event-driven-never-polling": "R",
+        "iii-everything-is-observable": "R",
+        "irreversible-choices-are-decided-first": "R",
+        "iv-deterministic-by-construction": "T",
+        "p1-the-core-executes-and-decides-no-policy-that-configuration-can-supply": "R",
+        "p2-behavior-is-configuration": "R",
+        "p3-change-without-redeploying": "T",
+        "p4-generic-over-the-domain": "R",
+        "p5-durable-state-disposable-memory": "T",
+        "p6-one-handling-per-failure-every-side-effect-redoable": "T",
+        "p7-the-system-improves-itself-through-its-own-primitives": "R",
+        "scopes-are-recorded-from-the-first-event": "R",
+        "secrets-never-reach-the-model-or-the-records": "U",
+        "security-guarantees-are-never-downgradable": "R",
+        "the-tenant-is-the-boundary": "T",
+        "tools-execute-through-governed-interfaces": "T",
+        "v-secure-by-default": "T",
+        "vi-generic-mechanisms-belong-in-the-shared-framework": "R",
+        "vii-what-repeats-becomes-a-mechanism": "R"
+      }
+    },
+    "spec/core/durability-and-deployment.md": {
+      "section_dispositions": {
+        "a-deployment-completes-on-readiness": "R",
+        "a-drain-is-orderly": "T",
+        "a-node-reports-its-own-health": "T",
+        "a-node-runs-only-the-platform-s-process": "T",
+        "a-node-starts-only-on-a-checked-configuration": "R",
+        "a-record-variant-is-readable-before-it-is-written": "R",
+        "a-restore-resumes-every-session": "D",
+        "alarms-derive-from-the-platform-s-own-events": "T",
+        "audit-and-usage-leave-through-their-own-sink": "T",
+        "least-privilege-from-the-first-release": "R",
+        "platform-limits-are-runtime-settings": "T",
+        "restores-are-drilled": "D",
+        "stage-resources-outlive-every-cluster": "T",
+        "the-epoch-fence": "T",
+        "the-platform-deploys-as-its-own-cluster-type": "T",
+        "work-resumes-from-committed-state": "T"
+      }
+    },
+    "spec/core/encryption-and-blobs.md": {
+      "section_dispositions": {
+        "a-blob-is-owned-and-immutable": "D",
+        "a-content-id-is-the-hash-its-consumers-can-compute": "T",
+        "a-long-lived-session-re-wraps-per-epoch": "D",
+        "a-permission-refusal-is-never-not-found": "C",
+        "an-attachment-is-copied-under-its-receiver": "D",
+        "deletion-is-key-destruction": "T",
+        "platform-published-content-is-copied-per-tenant": "D",
+        "reclamation-never-removes-a-referenced-blob": "D",
+        "sessions-are-encrypted-under-an-envelope": "T",
+        "sharing-is-an-explicit-pin": "D",
+        "the-key-comes-from-a-trusted-list": "D",
+        "the-key-service-stays-off-the-critical-path": "D"
+      }
+    },
+    "spec/core/events-and-subscriptions.md": {
+      "section_dispositions": {
+        "a-supervisor-session-observes-another-session": "N",
+        "a-topic-belongs-to-a-topic-group": "N",
+        "a-topic-s-queue-is-bounded": "N",
+        "a-viewer-is-one-page-s-connection": "C",
+        "an-external-queue-is-at-most-an-ingress-buffer": "N",
+        "digests-are-a-subscription-option": "N",
+        "each-subscriber-receives-in-order": "N",
+        "indexes-are-kept-in-both-directions": "N",
+        "interrupting-a-turn-cancels-only-the-model": "T",
+        "no-change-is-missed-and-no-history-is-replayed": "N",
+        "only-what-its-person-may-read": "T",
+        "ordering-and-state-are-kept-in-one-store": "R",
+        "person-addressed-routing-is-the-adapter-s": "N",
+        "publish-latency-is-independent-of-subscribers": "N",
+        "small-and-lossy-by-design": "C",
+        "subscriptions-come-from-definitions-sessions-and-grants": "N",
+        "the-session-decides-whether-a-notification-interrupts": "N",
+        "the-threshold-is-dynamic-and-configured": "N",
+        "three-primitives-opaque-to-the-core": "N"
+      }
+    },
+    "spec/core/failure-handling.md": {
+      "section_dispositions": {
+        "a-context-window-exceeded": "T",
+        "a-decider-or-its-dependency-fails": "T",
+        "a-failure-mid-stream": "T",
+        "a-policy-block": "R",
+        "a-refusal-a-malformed-reply-or-a-truncated-reply": "T",
+        "a-store-conflict-or-outage": "T",
+        "a-throttled-or-unavailable-model": "T",
+        "an-authentication-failure-toward-a-dependency": "T",
+        "an-event-that-fails-repeatedly": "N",
+        "an-invalid-request": "T",
+        "an-owner-that-crashes-or-moves": "T",
+        "an-unreachable-or-timed-out-tool": "T",
+        "every-blocked-or-quarantined-state-has-an-exit": "T",
+        "every-retry-has-a-budget": "R",
+        "every-side-effect-can-be-redone": "T",
+        "every-unit-of-work-has-a-deadline": "T",
+        "quarantine-and-blocks-are-events": "T",
+        "state-that-cannot-be-decoded": "T"
+      }
+    },
+    "spec/core/governance.md": {
+      "section_dispositions": {
+        "a-blocked-stop-continues-the-session": "T",
+        "a-charter-has-normative-requirements": "R",
+        "a-new-decider-runs-in-shadow-first": "D",
+        "a-pipeline-runs-low-cost-deciders-first": "T",
+        "a-policy-decider-s-verdicts-map-onto-the-decisions": "D",
+        "a-program-decider-s-state-slots": "D",
+        "a-retry-after-a-block-is-bounded": "T",
+        "a-revision-identifies-authoritative-source": "R",
+        "agents-produce-evidence-and-never-approve": "T",
+        "allow-and-flag": "T",
+        "an-emergency-control-is-never-blocked-by-policy": "T",
+        "block": "T",
+        "changing-configuration-passes-a-hook": "T",
+        "decider-code-enters-through-the-catalog": "D",
+        "deciders-are-one-of-a-closed-set-of-kinds": "D",
+        "deciders-guard-inputs-as-well-as-outputs": "T",
+        "decisions-are-cached-by-content": "D",
+        "defer": "D",
+        "each-decision-is-legal-only-at-some-hooks": "D",
+        "every-decision-is-an-event": "T",
+        "every-turn-reply-carries-charter-references": "N",
+        "failure-defaults-to-closed": "T",
+        "output-is-gated-before-it-takes-effect": "T",
+        "people-approve-policies-not-instances": "R",
+        "reference-checks-produce-audit-information": "N",
+        "the-core-builds-the-decision-request": "T",
+        "the-core-defines-a-fixed-set-of-hooks": "T",
+        "the-core-only-enforces": "T",
+        "transform": "D",
+        "two-paths-sit-outside-the-pipeline": "T"
+      }
+    },
+    "spec/core/identity-delegation-and-secrets.md": {
+      "section_dispositions": {
+        "a-definition-has-its-own-principal": "T",
+        "a-grant-is-data": "T",
+        "a-shared-session-acts-for-the-requesting-principal": "T",
+        "actions-policy-reserves-for-people-defer": "T",
+        "an-agent-identity-outlives-its-sessions": "R",
+        "delegation-only-narrows": "T",
+        "enforcement-is-at-the-fixed-hooks": "T",
+        "every-action-has-a-principal": "T",
+        "every-decision-and-credential-is-audited": "T",
+        "higher-levels-supply-providers-policy-the-broker-and-flows": "T",
+        "no-human-credential-runs-automation": "U",
+        "principal-ids-carry-their-provider-and-tenant": "T",
+        "secrets-stay-out-of-the-model-and-the-records": "T",
+        "services-take-identity-from-an-assertion": "T",
+        "signing-roots-are-held-apart-from-the-cluster": "D",
+        "the-broker-is-its-own-trust-boundary": "D",
+        "the-operator-is-carried-into-the-audit-trail": "T"
+      }
+    },
+    "spec/core/implementation-organization.md": {
+      "section_dispositions": {
+        "each-implementation-identifies-its-target": "R",
+        "evidence-is-attributed-to-its-implementation": "R",
+        "generated-artifacts-are-separate": "R",
+        "implementations-share-one-contract": "R",
+        "shared-tests-keep-results-separate": "R"
+      }
+    },
+    "spec/core/observation-and-usage.md": {
+      "section_dispositions": {
+        "a-session-publishes-observation-records": "T",
+        "dependency-measurements-are-published": "R",
+        "improvement-runs-through-the-platform-s-own-primitives": "N",
+        "reading-an-observed-range-is-granted-and-audited": "N",
+        "triggers-and-queues-are-configuration": "C",
+        "versions-compare-on-one-stream": "T"
+      }
+    },
+    "spec/core/sessions-and-partitions.md": {
+      "section_dispositions": {
+        "a-change-applies-at-the-next-turn-boundary": "T",
+        "a-commit-conflicts-only-on-the-fence": "T",
+        "a-forwarded-call-carries-the-caller": "T",
+        "a-memory-belongs-to-an-agent-identity": "T",
+        "a-partition-reads-at-the-woken-version": "T",
+        "a-partition-sleeps-on-its-doorbell-and-its-deadlines": "T",
+        "a-pending-inbox-is-bounded": "T",
+        "a-prefix-change-preserves-the-cache": "C",
+        "a-recurring-id-has-incarnations": "T",
+        "a-session-id-encodes-no-location": "T",
+        "a-session-is-one-continuous-transcript": "T",
+        "a-session-s-partition-is-a-function-of-its-id": "N",
+        "cost-follows-active-sessions": "T",
+        "each-event-applies-exactly-once-in-order": "T",
+        "every-session-records-its-origin": "T",
+        "liveness-is-decided-by-a-mechanism": "T",
+        "long-work-commits-as-state-transitions": "T",
+        "ownership-is-fenced-by-generation": "T",
+        "placement-comes-from-a-coordinator": "N",
+        "platform-managed-sessions-are-supervised": "T",
+        "removing-a-session": "N",
+        "starting-and-ending-are-low-cost": "T",
+        "the-doorbell-advances-to-a-watermark": "N",
+        "the-partition-owner-is-the-single-writer": "T",
+        "the-resident-form-is-a-cache": "T",
+        "the-space-splits-by-doubling": "N"
+      }
+    },
+    "spec/core/shared-framework.md": {
+      "section_dispositions": {
+        "caller-authentication-and-call-guards": "T",
+        "components-change-through-their-own-review": "R",
+        "deadlines-on-the-environment": "R",
+        "durable-store-durability": "T",
+        "envelope-encryption": "D",
+        "node-transport-is-authenticated": "T",
+        "rate-limiting": "T",
+        "reads-at-the-woken-version": "N",
+        "self-describing-ids": "R",
+        "the-blob-store": "D",
+        "the-change-feed": "T",
+        "the-live-stream-hub": "T",
+        "the-partitioned-actor-set": "N"
+      }
+    },
+    "spec/core/simulation-and-conformance.md": {
+      "section_dispositions": {
+        "a-governing-requirement-binds-to-the-change-process": "R",
+        "behavior-is-witnessed-by-execution": "R",
+        "coverage-requires-implementation-and-test": "R",
+        "every-dependency-has-a-verified-simulator": "T",
+        "every-requirement-binds-to-an-enforcing-line": "R",
+        "everything-runs-under-simulation": "T",
+        "identity-is-the-quoted-sentence": "R",
+        "properties-are-generated-and-checked-against-a-model": "T",
+        "security-controls-are-shown-to-hold": "R",
+        "the-failure-table-is-covered": "T",
+        "the-gate-decides-promotion": "R",
+        "the-gate-evaluates-against-an-immutable-snapshot": "R",
+        "the-gating-invariants": "T",
+        "time-is-a-dependency": "R"
+      }
+    },
+    "spec/core/tenancy-and-confidentiality.md": {
+      "section_dispositions": {
+        "a-lookup-reveals-nothing-across-tenants": "C",
+        "a-reader-passes-a-scope-check": "T",
+        "authority-does-not-extend-beyond-the-tenant": "T",
+        "ids-are-portable": "R",
+        "nothing-derived-crosses": "C",
+        "retention-is-per-tenant": "T",
+        "root-key-administration-is-separated": "D",
+        "scopes-propagate-as-unions": "R"
+      }
+    },
+    "spec/core/the-frontend.md": {
+      "section_dispositions": {
+        "a-control-at-template-or-tenant-scope-reaches-every-partition": "N",
+        "a-deferred-operation-is-acknowledged-with-its-decision": "D",
+        "a-forwarded-identity-comes-only-from-a-configured-proxy": "C",
+        "a-principal-makes-every-call": "T",
+        "a-read-of-state-or-transcript-returns-what-the-grant-allows": "T",
+        "a-request-completes-within-the-connection-lifetime": "R",
+        "a-request-that-changes-state-is-deduplicated": "T",
+        "a-tail-position-survives-moves-and-compactions": "N",
+        "a-tail-relay-runs-under-the-platform-s-identity": "N",
+        "a-tail-streams-gated-activity": "N",
+        "a-tail-token-opens-one-stream": "N",
+        "a-webhook-delivery-is-deduplicated-and-bounded": "N",
+        "an-attachment-is-staged-before-it-is-referenced": "N",
+        "an-emergency-control-is-granted-and-decided-in-process": "T",
+        "an-emergency-control-takes-effect-at-a-safe-point": "T",
+        "an-event-is-an-opaque-deduped-payload": "N",
+        "an-operator-of-the-platform-sets-a-tenant-s-caps": "T",
+        "an-upload-is-checked-before-its-body-is-read": "N",
+        "caps-are-configuration": "T",
+        "development-modes-stay-on-development-stages": "R",
+        "emergency-controls-work-without-the-owner-of-the-list": "N",
+        "event-hooks-deliver-a-session-s-status": "N",
+        "every-refusal-has-one-shape": "T",
+        "every-route-has-an-exact-grammar": "R",
+        "governance-operations-are-governance-tier": "N",
+        "onboarding-installs-the-bootstrap-bundle": "N",
+        "operator-operations-are-admitted-by-role": "R",
+        "refusal-classes-are-a-closed-set": "T",
+        "replies-are-legible-and-traceable": "R",
+        "sessions-are-listed-in-bounded-pages": "T",
+        "the-access-log-records-requests-without-content": "R",
+        "the-effective-lifecycle-is-the-most-restrictive": "T",
+        "timer-operations-reach-only-the-caller-s-timers": "N",
+        "usage-is-counted-whether-or-not-a-cap-is-in-force": "T",
+        "webhooks-let-an-external-system-publish": "N",
+        "what-the-data-plane-accepts": "T"
+      }
+    },
+    "spec/core/timers.md": {
+      "section_dispositions": {
+        "a-fire-is-exactly-once": "N",
+        "a-guard-prevents-a-model-wake-when-there-is-no-work": "N",
+        "a-partition-detects-a-faulty-clock": "T",
+        "a-session-owns-its-own-timers": "N",
+        "a-timer-s-name-is-unique-within-its-session": "N",
+        "empty-wakes-are-bounded": "N",
+        "every-timer-event-is-observable": "N",
+        "flex-and-missed-occurrences": "N",
+        "once-or-recurring": "N",
+        "one-deadline-set-per-partition": "T",
+        "timers-add-no-keys-of-their-own": "N"
+      }
+    },
+    "spec/core/tools-and-dispatch.md": {
+      "section_dispositions": {
+        "a-fork-is-its-own-principal": "N",
+        "a-fork-starts-from-its-parent-s-transcript": "N",
+        "a-server-may-ask-the-platform": "N",
+        "a-session-may-be-evicted-while-a-tool-runs": "T",
+        "a-sub-session-is-never-wider-than-its-parent": "T",
+        "a-sub-session-reports-to-its-parent": "T",
+        "an-experiment-fork-is-intercepted": "N",
+        "calls-leave-through-one-egress-point": "T",
+        "changes-reach-sessions-as-reconfiguration": "T",
+        "dispatch-is-observable": "T",
+        "dispatch-refuses-what-the-definition-does-not-list": "T",
+        "fork-queries-are-discarded": "N",
+        "mechanisms-are-not-tools": "R",
+        "native-tools-act-only-on-the-platform-s-own-state": "N",
+        "recovery-follows-the-tool-s-semantics": "T",
+        "recurring-work-uses-a-new-sub-session": "N",
+        "specs-are-loaded-hashed-and-checked": "T",
+        "the-dispatch-sequence": "T",
+        "the-sandbox-is-not-a-tool-executor": "D",
+        "three-executor-kinds": "N",
+        "what-every-service-receives": "N"
+      }
+    },
+    "spec/contracts/decision-hook.md": {
+      "section_dispositions": {
+        "a-block-takes-precedence-over-a-defer": "D",
+        "a-decider-is-idempotent-by-decision-id": "D",
+        "a-decision-hook-is-declared-by-configuration": "D",
+        "a-decision-is-one-of-a-closed-set": "D",
+        "a-retry-reuses-the-decision-id": "D",
+        "additive-evolution-of-this-contract": "D",
+        "each-decision-is-legal-only-at-stated-hooks": "D",
+        "each-hook-adds-its-own-fields": "D",
+        "latency-sensitive-hooks-admit-an-external-decider-only-as-a-defer": "D",
+        "no-verdict-is-the-failure-outcome": "D",
+        "only-a-listed-principal-resolves": "D",
+        "the-request-carries-the-subject": "D",
+        "the-request-identifies-itself": "D",
+        "the-request-identifies-the-actors": "D",
+        "the-request-is-attributable": "D",
+        "the-stop-hook-asks-whether-work-remains": "D"
+      }
+    },
+    "spec/contracts/signed-assertion.md": {
+      "section_dispositions": {
+        "a-verifier-refuses-what-does-not-match": "D",
+        "additive-evolution-of-this-contract": "D",
+        "an-assertion-carries-what-the-call-may-do": "D",
+        "an-assertion-identifies-the-actor": "D",
+        "an-assertion-identifies-the-call-it-is-bound-to": "D",
+        "every-outbound-call-carries-one": "D",
+        "keys-are-published-and-rotated-without-a-gap": "D",
+        "the-assertion-scopes-the-call": "D",
+        "the-signature-is-asymmetric": "D"
+      }
+    },
+    "spec/contracts/event-hook.md": {
+      "section_dispositions": {
+        "a-backlog-coalesces": "D",
+        "a-hook-never-affects-its-session": "D",
+        "a-receiver-dedupes-and-orders": "D",
+        "additive-evolution-of-this-contract": "D",
+        "delivery-comes-from-the-durable-outbox": "D",
+        "destinations-are-registered": "D",
+        "payloads-carry-state-never-content": "D",
+        "the-set-is-closed-and-versioned": "D"
+      }
+    },
+    "spec/contracts/definition-source.md": {
+      "section_dispositions": {
+        "a-definition-only-restricts": "T",
+        "a-source-is-bound-to-one-tenant": "T",
+        "a-source-may-announce-its-revision": "D",
+        "a-version-is-immutable-and-addressed-by-digest": "T",
+        "additive-evolution-of-this-contract": "T",
+        "one-suite-runs-against-both-sides": "D",
+        "only-a-served-retirement-ends-sessions": "D",
+        "pause-is-served-not-inferred": "D",
+        "the-change-feed-resumes-from-any-revision": "D",
+        "the-index-is-a-consistent-snapshot-at-a-rising-revision": "D",
+        "tools-that-write-definitions-declare-it": "D",
+        "what-a-definition-carries": "T",
+        "what-a-definition-never-carries": "R"
+      }
+    },
+    "spec/contracts/event-envelope.md": {
+      "section_dispositions": {
+        "a-topic-delivery-carries-its-position": "D",
+        "additive-evolution-of-this-contract": "T",
+        "an-event-carries-its-destination": "T",
+        "an-event-may-carry-a-kind": "R",
+        "an-inbound-event-never-dispatches-a-tool": "R",
+        "attachments-are-carried-beside-the-payload": "D",
+        "every-event-carries-its-scope": "T",
+        "every-event-has-a-dedupe-id": "T",
+        "every-event-has-a-priority": "T",
+        "the-payload-is-opaque-and-bounded": "T",
+        "the-publisher-is-recorded-never-read": "T"
+      }
+    },
+    "spec/contracts/evidence-record.md": {
+      "section_dispositions": {
+        "a-checker-that-includes-a-model-cannot-admit": "R",
+        "additive-evolution-of-this-contract": "R",
+        "evidence-is-the-checker-s-own-record": "R",
+        "the-record-carries-a-result-of-a-closed-set": "R",
+        "the-record-identifies-its-subject": "R",
+        "the-record-identifies-the-checker": "R",
+        "the-record-identifies-the-property": "R",
+        "the-record-is-an-event": "R",
+        "the-record-is-reproducible": "R",
+        "the-record-states-its-scope-and-strength": "R"
+      }
+    },
+    "spec/contracts/stored-form.md": {
+      "section_dispositions": {
+        "a-blob-carries-its-key-chain": "D",
+        "a-blob-is-addressed-by-its-stored-bytes": "D",
+        "a-blob-is-immutable-and-owned": "D",
+        "a-decoder-reports-every-corrupt-value": "R",
+        "a-resource-carries-its-own-wrapped-keys": "D",
+        "additive-evolution-of-this-contract": "R",
+        "authenticated-data-binds-the-envelope": "D",
+        "every-durable-format-is-self-describing": "C",
+        "frozen-ranges-are-compressed-before-encryption": "D",
+        "keys-derive-from-the-tenant-s-root": "D",
+        "scheduling-fields-are-readable-without-keys": "D",
+        "the-tenant-is-in-the-encryption-context": "D",
+        "values-and-blobs-use-authenticated-encryption": "D"
+      }
+    },
+    "spec/contracts/tool-call.md": {
+      "section_dispositions": {
+        "a-long-call-may-finish-later": "T",
+        "a-result-is-bounded-in-the-transcript": "T",
+        "a-service-answers-reconcile": "T",
+        "a-service-dedupes-by-call-id": "T",
+        "a-service-fences-a-superseded-owner": "T",
+        "a-tool-error-is-a-result-not-a-failure": "D",
+        "additive-evolution-of-this-contract": "T",
+        "an-interrupted-side-effect-reports-unknown": "T",
+        "every-call-carries-its-identity": "T",
+        "the-call-id-is-the-dedupe-key-end-to-end": "T",
+        "the-server-declares-the-semantics": "T",
+        "the-server-declares-the-spec": "D",
+        "the-spec-declares-call-types-and-credentials": "D"
+      }
+    },
+    "spec/contracts/usage-record.md": {
+      "section_dispositions": {
+        "a-model-attempt-s-record-carries-its-cause-and-outcome": "T",
+        "a-record-carries-its-tenant-and-actors": "T",
+        "a-record-carries-no-content": "R",
+        "additive-evolution-of-this-contract": "R",
+        "every-attempt-is-recorded-once": "T",
+        "the-stream-has-its-own-retention": "C"
+      }
+    },
+    "spec/decisions/authority-widening/checkers-only.md": {
+      "section_dispositions": {
+        "a-deferral-to-a-person-blocks-instead": "R",
+        "a-gate-spec-is-approved-by-a-person-other-than-the-author": "R",
+        "a-person-changes-policy-not-instances": "T",
+        "only-a-sound-checker-widens-authority": "R"
+      }
+    },
+    "spec/decisions/tenancy-scope/one-tenant.md": {
+      "section_dispositions": {
+        "the-first-tenant-is-bootstrapped": "R"
+      }
+    },
+    "spec/decisions/session-management/imperative-only.md": {
+      "section_dispositions": {
+        "the-platform-creates-no-root-session-on-its-own": "T"
+      }
+    },
+    "spec/decisions/session-management/imperative.md": {
+      "section_dispositions": {
+        "a-caller-holds-a-grant": "T",
+        "a-policy-holds-settings-a-session-inherits": "U",
+        "a-refusal-over-a-cap-states-the-cap": "T",
+        "a-template-is-a-configuration-plus-a-key-scheme": "U",
+        "configuration-is-validated-and-governed": "T",
+        "each-operation-passes-the-control-operation-hook": "T",
+        "lifecycle-events-reach-the-owner": "T",
+        "reconfiguration-applies-at-a-turn-boundary": "T",
+        "the-api-accepts-creation-with-configuration": "T",
+        "the-api-accepts-ending": "T",
+        "the-owner-decides-whether-a-root-session-exists": "T"
+      }
+    },
+    "spec/decisions/durability/self-durable.md": {
+      "section_dispositions": {
+        "a-crash-loses-no-committed-state": "T",
+        "a-full-cluster-restart-is-drilled": "T",
+        "a-new-cluster-restores-from-the-store-s-backup": "D",
+        "an-orderly-drain-loses-nothing": "R",
+        "the-store-survives-the-loss-of-every-node": "T"
+      }
+    },
+    "spec/decisions/execution/direct.md": {
+      "section_dispositions": {
+        "a-context-window-exceeded-compacts-and-retries": "T",
+        "a-failure-mid-stream-discards-the-reply": "R",
+        "a-prefix-change-is-a-mid-conversation-instruction": "D",
+        "a-retry-carries-the-blocked-attempt": "D",
+        "interrupting-a-turn-cancels-the-stream": "R",
+        "output-is-gated-per-block": "T",
+        "the-threshold-is-computed-within-a-step": "D"
+      }
+    },
+    "spec/decisions/execution/direct-context-compaction-and-cache.md": {
+      "section_dispositions": {
+        "a-charter-change-schedules-a-compaction": "D",
+        "compaction-failures-are-bounded": "D",
+        "compaction-runs-beside-the-turns": "D",
+        "every-cache-setting-is-measured": "T",
+        "every-tier-above-the-log-is-a-cache": "D",
+        "frozen-history-is-recoverable": "D",
+        "method": "D",
+        "rollback-removes-attempts-from-the-view-only": "D",
+        "stable-ranges-move-to-the-blob-store": "D",
+        "the-keep-set-stays-verbatim": "D",
+        "the-log-is-never-edited": "T",
+        "the-platform-avoids-full-rewrites": "D",
+        "the-platform-manages-the-lifetime": "D",
+        "the-policy-comes-from-the-definition": "D",
+        "the-swap-preserves-history": "D",
+        "thresholds-are-per-session-and-below-the-context-window": "D",
+        "tool-results-are-bounded-in-the-view": "T",
+        "trimming-leaves-a-resolvable-placeholder": "D"
+      }
+    },
+    "spec/decisions/execution/direct-model-turns-and-scheduling.md": {
+      "section_dispositions": {
+        "a-model-switch-never-fails-a-turn": "D",
+        "a-request-is-a-function-of-the-log-and-policy": "T",
+        "a-source-is-an-account-a-region-and-a-model-endpoint": "T",
+        "a-tenant-s-own-capacity-comes-from-tenant-configuration": "T",
+        "admission-adapts-to-capacity": "T",
+        "cache-boundaries-coincide": "D",
+        "changes-to-the-prefix-preserve-the-cache": "D",
+        "connections-are-shared-and-bounded": "R",
+        "every-turn-publishes-its-outcome": "T",
+        "failures-are-classified-structurally": "T",
+        "fair-share": "T",
+        "metrics-split-by-closed-sets": "T",
+        "no-call-is-made-directly-to-a-model-endpoint": "T",
+        "one-provider-neutral-transcript": "T",
+        "priority-follows-the-work": "U",
+        "priority-orders-everything-that-queues": "T",
+        "quota-is-a-cluster-resource": "U",
+        "reasoning-binding-is-explicit": "T",
+        "retention-terms-are-honored": "R",
+        "routes-are-sticky": "D",
+        "scheduling-is-observable": "T",
+        "the-platform-keeps-each-model-s-facts": "T",
+        "three-classes": "U"
+      }
+    },
+    "spec/decisions/collaboration-platform/build.md": {
+      "section_dispositions": {
+        "a-block-is-a-wait-on-a-resolver": "D",
+        "a-decision-is-recorded-under-the-principal-that-made-it": "D",
+        "a-durable-store-behind-it": "D",
+        "a-question-outlives-its-asker": "D",
+        "changes-within-a-tenant-are-ordered-by-one-revision": "R",
+        "coordination-logic-lives-in-the-collaboration-platform": "T",
+        "every-record-has-a-durable-id-beside-its-cited-reference": "R",
+        "housekeeping-runs-from-deadlines": "D",
+        "identity-comes-only-from-authentication": "D",
+        "it-is-a-client-and-an-adapter-not-a-store-client": "T",
+        "it-keeps-no-delivery-mechanism-of-its-own": "D",
+        "it-manages-subscriptions-and-answers-hooks": "D",
+        "it-publishes-every-record-change": "T",
+        "it-runs-on-many-servers-with-no-node-state": "T",
+        "it-serves-definitions": "D",
+        "lifecycle-intent-is-the-only-pause-path": "D",
+        "the-decision-queue-is-complete-by-construction": "D",
+        "the-operator-team-is-closed": "D"
+      }
+    },
+    "spec/decisions/workspace-service/build.md": {
+      "section_dispositions": {
+        "a-host-is-acquired-only-for-work-that-needs-it": "D",
+        "a-host-keeps-its-promises": "D",
+        "a-snapshot-follows-every-changing-call": "D",
+        "a-stored-value-belongs-to-one-session": "D",
+        "a-workspace-free-tool-is-one-call-to-a-service": "D",
+        "a-workspace-is-isolated-and-bounded": "D",
+        "credentials-are-per-call": "D",
+        "every-served-call-is-an-event": "D",
+        "hosts-report-health-and-a-lost-host-frees-its-leases": "D",
+        "it-is-a-tool-server-separate-from-the-reasoning-loop": "D",
+        "offline-is-an-event": "D",
+        "operations": "D",
+        "placement-and-clearance": "D",
+        "swap-fork-and-rollback": "D",
+        "the-service-holds-the-credentials-for-a-workspace-free-tool": "D"
+      }
+    }
+  },
+  "exact_overrides": [
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "constitution",
+        "sentence": ">\n> The key words **MUST** and **MUST NOT** state an absolute requirement; **SHOULD** and **SHOULD NOT** state a requirement that an implementation may set aside only with a recorded reason; **MAY** states an optional behavior.\n"
+      },
+      "disposition": "A"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "identity-comes-from-authentication",
+        "sentence": "A human sign-on credential MUST NOT be used to run automation.\n"
+      },
+      "disposition": "U"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "p6-one-handling-per-failure-every-side-effect-redoable",
+        "sentence": "Every failure class MUST have exactly one defined handling and one defined state the session ends in.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "the-tenant-is-the-boundary",
+        "sentence": "Every durable record, principal, grant, subscription, and event MUST carry its tenant.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "the-tenant-is-the-boundary",
+        "sentence": "Content derived from one tenant's data MUST NOT reach another tenant.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "tools-execute-through-governed-interfaces",
+        "sentence": "A tool MAY be hosted within the platform.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "tools-execute-through-governed-interfaces",
+        "sentence": "A tool MAY be provided by an external service.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "tools-execute-through-governed-interfaces",
+        "sentence": "An agent definition MUST be data the tenant supplies rather than code written into the platform.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "v-secure-by-default",
+        "sentence": "A component that cannot obtain a policy decision, a key, or a credential MUST fail closed.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "constitution.md",
+        "section": "v-secure-by-default",
+        "sentence": "A key MUST be chosen only by a trusted input, never by a value read from a store or a payload.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/definition-source.md",
+        "section": "what-a-definition-carries",
+        "sentence": "A definition MUST state its instancing as singleton, keyed by requester, or keyed by a publisher's key.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/evidence-record.md",
+        "section": "evidence-is-the-checker-s-own-record",
+        "sentence": "An evidence record MUST be signed by the principal of the runner that executed the checker.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/evidence-record.md",
+        "section": "the-record-is-an-event",
+        "sentence": "An evidence record MUST be published as an event the gate's hook can read.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "a-decoder-reports-every-corrupt-value",
+        "sentence": "A plaintext value found where a sealed value is due MUST be treated as undecodable rather than read.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "A tag given to a field or a variant MUST NOT be reused for another meaning after the field or variant is removed.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "A field added to a durable format MUST carry the value a reader that lacks the field falls back to.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "An enumeration in a durable format MUST declare a fallback variant that a reader reads an unknown variant as, or declare that it has none.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "An enumeration whose variants cannot be held safely MUST declare no fallback, so that an unknown variant fails the decode and the value is held unchanged.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "A record MUST remain readable under the stored format, the encryption domain, and the key generation it was sealed with after any of them changes.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "A re-seal of a record under a new binding MUST commit under the record's partition fence, so that the owner's own commits cannot interleave with it.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "The hash that maps a session id to its partition MUST be part of the durable format, so that changing it is a migration.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "A value that exceeds its bound MUST be rejected as an error rather than truncated.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "A change to a field's bound MUST be a format change.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/stored-form.md",
+        "section": "every-durable-format-is-self-describing",
+        "sentence": "A stored envelope's format identity MUST be independent of the shape of the value it carries, so that a change to the carried value invalidates no stored envelope.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-long-call-may-finish-later",
+        "sentence": "A call's horizon MUST be its deadline plus the configured outcome-unknown window.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-long-call-may-finish-later",
+        "sentence": "Delivery of a late result MUST end at the first of the end of the call's session, the platform's refusal of the server's sends, or the call's horizon.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-long-call-may-finish-later",
+        "sentence": "A final result that arrives after the horizon MUST be dropped with an audit event.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "The full output of a call MUST be stored once, so that a session can page through it.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "A result part the platform does not model MUST reach the model as a textual reference carrying its address, name, and size rather than be dropped.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "A tool server MAY deliver a result larger than the payload bound by staging it through the API as an attachment that its result event refers to.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "A tool server's right to stage an attachment MUST be bound to one open dispatch to that server, identified by the session and the call id in fields the server signs.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "The platform MUST check that the dispatch is open to that server before it accepts any byte of the staged output.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "The platform's answer to that check MUST reveal only whether the call is open to that server.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "A staged output MUST be usable only by the result of the dispatch that admitted it.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-result-is-bounded-in-the-transcript",
+        "sentence": "A tool server MUST be allowed to send into a session only if that session has dispatched to the server, on the server's own topic and at a bounded priority.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-service-dedupes-by-call-id",
+        "sentence": "A service the platform's operators run MUST answer a close for a call id with the call's final state: closed, in flight, or settled.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-service-dedupes-by-call-id",
+        "sentence": "A close MUST be idempotent.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-service-dedupes-by-call-id",
+        "sentence": "A service that receives a close for a call id it holds no receipt for MUST write a closed receipt, so that a later admission of that call id is refused.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-service-dedupes-by-call-id",
+        "sentence": "A close of a call in flight MUST end the call.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "a-service-fences-a-superseded-owner",
+        "sentence": "A service that runs as more than one instance MUST fence by the highest lease generation any of its instances has recorded for the session.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "additive-evolution-of-this-contract",
+        "sentence": "A party MUST carry a content part it does not recognize through unchanged rather than reject the message.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "every-call-carries-its-identity",
+        "sentence": "Every call MUST carry the caller's assertion, addressed to the server.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "every-call-carries-its-identity",
+        "sentence": "Every call MUST carry the caller's distributed trace context.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "every-call-carries-its-identity",
+        "sentence": "A tool server the operators run MUST continue the caller's trace under a span of its own and carry its trace id on every event it publishes for the call.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "the-server-declares-the-semantics",
+        "sentence": "A tool's semantics MUST state whether a failed attempt may be removed from the model's view once a retry succeeds.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/tool-call.md",
+        "section": "the-spec-declares-call-types-and-credentials",
+        "sentence": "A spec MUST request any credential it needs by credential reference rather than by value.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/usage-record.md",
+        "section": "every-attempt-is-recorded-once",
+        "sentence": "Exactly one usage record MUST exist for every tool call.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/usage-record.md",
+        "section": "every-attempt-is-recorded-once",
+        "sentence": "Exactly one usage record MUST exist for every decider call.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/usage-record.md",
+        "section": "every-attempt-is-recorded-once",
+        "sentence": "A shadow decider call MUST have its own usage record marked as shadow.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/contracts/usage-record.md",
+        "section": "every-attempt-is-recorded-once",
+        "sentence": "A decision served from the decision cache MUST NOT produce a usage record, because no decider was called.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/core/identity-delegation-and-secrets.md",
+        "section": "actions-policy-reserves-for-people-defer",
+        "sentence": "A person who approves a change MUST NOT be in the change's authored-for set.\n"
+      },
+      "disposition": "U"
+    },
+    {
+      "requirement": {
+        "file": "spec/core/sessions-and-partitions.md",
+        "section": "a-session-is-one-continuous-transcript",
+        "sentence": "The platform MUST NOT bound a session's lifetime.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/core/sessions-and-partitions.md",
+        "section": "each-event-applies-exactly-once-in-order",
+        "sentence": "A commit whose outcome is unknown MUST be resolved by re-reading the committed state under the fence before any redo.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/core/sessions-and-partitions.md",
+        "section": "ownership-is-fenced-by-generation",
+        "sentence": "A commit by a superseded owner MUST fail.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/core/sessions-and-partitions.md",
+        "section": "ownership-is-fenced-by-generation",
+        "sentence": "Correctness MUST NOT depend on a superseded owner detecting that it was superseded.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A task MUST be blocked only while it waits on a task, a question, a document's operator review, or a review record.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A task that has an open wait MUST be blocked.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A wait on an agent, a team, or an external party MUST be refused, so that nothing waits on a principal that may vanish.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A task's status MUST be one of a closed set.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A resolver MUST end the waits on it in the transaction that resolves it, whatever its outcome.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A task whose last wait ends MUST return to the status it held before its first wait, with its assignee.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "The event that unblocks a task MUST carry the outcome of each wait that ended.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A wait that would close a cycle through waits and parent links MUST be refused.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A wait on a resolver that is already closed MUST be refused.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A task MUST be at most the configured number of levels below its top-level ancestor.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A task MUST be set aside only by an operator's own write or by a matching go-ahead.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-block-is-a-wait-on-a-resolver",
+        "sentence": "A task MUST be exempt from monitoring exactly while it is set aside.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-durable-store-behind-it",
+        "sentence": "The service MUST keep its durable state in a store that survives the loss of a node.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-durable-store-behind-it",
+        "sentence": "The service MUST refuse a content id a client supplies that differs from the one the service computed.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "a-durable-store-behind-it",
+        "sentence": "A document version number MUST NOT be reused.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "housekeeping-runs-from-deadlines",
+        "sentence": "An automatic archive MUST be restorable.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "housekeeping-runs-from-deadlines",
+        "sentence": "An automatic archive MUST be published as an event.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "housekeeping-runs-from-deadlines",
+        "sentence": "A task that an open wait identifies as its resolver MUST NOT be archived automatically.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "housekeeping-runs-from-deadlines",
+        "sentence": "A project's refused statuses, required metadata, default assignee, and dwell deadline MUST be tenant configuration enforced at every write.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "housekeeping-runs-from-deadlines",
+        "sentence": "A task that exceeds its project's dwell deadline MUST produce an overdue event to the project's coordinators.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "housekeeping-runs-from-deadlines",
+        "sentence": "A task's close event MUST carry the task's pickup, waiting, and blocked durations.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "The acting identity of a call to the collaboration platform MUST come from authentication rather than from an argument.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "A write MUST record the authenticated principal as its author.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "An identity argument MUST be accepted only when it equals the authenticated caller.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "A refusal of a mismatched identity argument MUST be published as an event.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "Authorization MUST fail closed.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "At most one runtime MUST be able to act as a given agent at any moment.\n"
+      },
+      "disposition": "U"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "Each external bridge or ingest service MUST act under a service principal of its own.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "identity-comes-only-from-authentication",
+        "sentence": "Re-ingesting an external record MUST resolve to the existing record for the same external link rather than create a second one.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-keeps-no-delivery-mechanism-of-its-own",
+        "sentence": "The service MUST NOT keep an agent inbox, a notification poll, or a liveness watchdog of its own.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-keeps-no-delivery-mechanism-of-its-own",
+        "sentence": "The service MUST keep only the notifications addressed to a person.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-keeps-no-delivery-mechanism-of-its-own",
+        "sentence": "The service MUST publish each new notification to that person's own topic.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-keeps-no-delivery-mechanism-of-its-own",
+        "sentence": "A change MUST be addressed to a person only when the change identifies that person directly, recorded at commit.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-manages-subscriptions-and-answers-hooks",
+        "sentence": "The service MUST subscribe an agent's session to a task when it assigns the task.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-manages-subscriptions-and-answers-hooks",
+        "sentence": "The service MUST unsubscribe an agent's session from a task when the work is done.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-manages-subscriptions-and-answers-hooks",
+        "sentence": "The service MUST answer a stop-admission request according to whether the agent has open, unblocked work.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-manages-subscriptions-and-answers-hooks",
+        "sentence": "The service MUST receive the agent platform's session status hooks rather than have agents report their own status.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-manages-subscriptions-and-answers-hooks",
+        "sentence": "A task MUST count as open work for its assignee only when it is not started or in progress, is not archived, has no blocked or set-aside ancestor, and has no open child.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-manages-subscriptions-and-answers-hooks",
+        "sentence": "The service MUST have a recovery action for every blocked, quarantined, and failed state the status-hook contract can report.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-manages-subscriptions-and-answers-hooks",
+        "sentence": "Alarming a person MUST NOT be the only recovery action for any such state.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-serves-definitions",
+        "sentence": "Where the declarative alternative for root sessions is adopted, the service MUST serve agent definitions as a definition source over the definition-source contract.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-serves-definitions",
+        "sentence": "Where the declarative alternative for root sessions is adopted, the service MUST compose a definition version only from approved document versions.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-serves-definitions",
+        "sentence": "Where the declarative alternative for root sessions is adopted, the service MUST serve a retired intent only for an explicit, recorded retirement, never inferred from a missing record or a failed read.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-serves-definitions",
+        "sentence": "Where the declarative alternative for root sessions is adopted, the composer MUST NOT issue a new version when the composed body is unchanged apart from its version field.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "it-serves-definitions",
+        "sentence": "An agent's definition identity MUST NOT be reassigned to another agent.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "lifecycle-intent-is-the-only-pause-path",
+        "sentence": "An agent's run, paused, or retired intent MUST be the collaboration platform's mechanism for requesting a non-emergency pause of its sessions.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "lifecycle-intent-is-the-only-pause-path",
+        "sentence": "A non-emergency pause requested through the collaboration platform MUST take effect by setting that intent.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "lifecycle-intent-is-the-only-pause-path",
+        "sentence": "A check MUST report any agent whose intent and reported state differ.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "lifecycle-intent-is-the-only-pause-path",
+        "sentence": "Recording an agent's retirement MUST, in the same transaction, unassign its open tasks, cancel the questions routed to it, and reroute the answers to the questions it asked to each record's current owner.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "lifecycle-intent-is-the-only-pause-path",
+        "sentence": "Pausing an agent MUST NOT change its tasks or its questions.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "lifecycle-intent-is-the-only-pause-path",
+        "sentence": "Where the declarative alternative for root sessions is adopted, the service MUST mark an agent retired only when the platform reports the retirement applied.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "the-operator-team-is-closed",
+        "sentence": "A membership that would resolve a non-person into the operator team MUST be refused.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "the-operator-team-is-closed",
+        "sentence": "The operator team, and any team nested in it, MUST be changed only by an operator.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "the-operator-team-is-closed",
+        "sentence": "A write that would remove the last operator MUST be refused.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "the-operator-team-is-closed",
+        "sentence": "Every change to the operator team MUST be published as an event to the operators.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/collaboration-platform/build.md",
+        "section": "the-operator-team-is-closed",
+        "sentence": "A recovery entry for the operator team MUST be one-time, add-only, and applied once.\n"
+      },
+      "disposition": "N"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/durability/self-durable.md",
+        "section": "the-store-survives-the-loss-of-every-node",
+        "sentence": "The durable store MUST survive the loss of every node at once without losing committed state.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-context-compaction-and-cache.md",
+        "section": "every-tier-above-the-log-is-a-cache",
+        "sentence": "Dropping any tier of the transcript cache MUST lose nothing.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-context-compaction-and-cache.md",
+        "section": "method",
+        "sentence": "A compaction MUST count against the session's budget.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-context-compaction-and-cache.md",
+        "section": "rollback-removes-attempts-from-the-view-only",
+        "sentence": "The durable log MUST keep rolled-back attempts for audit and observation.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-context-compaction-and-cache.md",
+        "section": "rollback-removes-attempts-from-the-view-only",
+        "sentence": "A reasoning block that held a secret MUST be kept in the durable log only as the redaction marker.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-context-compaction-and-cache.md",
+        "section": "rollback-removes-attempts-from-the-view-only",
+        "sentence": "The transcript and the durable log MUST record content as it took effect after transforms rather than as it arrived.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "a-request-is-a-function-of-the-log-and-policy",
+        "sentence": "A rendered segment MUST depend only on its content, the provider's wire format, and a render version, so that it is cached by content and shared across sessions.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "a-source-is-an-account-a-region-and-a-model-endpoint",
+        "sentence": "A scheduler MUST route across capacity sources by spare capacity and cost.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "admission-adapts-to-capacity",
+        "sentence": "A scheduler MUST admit waiting turns per model and endpoint in priority order, breaking ties by deadline.\n"
+      },
+      "disposition": "U"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "failures-are-classified-structurally",
+        "sentence": "A provider failure MUST be classified from the provider's structured fields rather than by matching\nmessage text, except where a provider offers no structured field for the condition.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "fair-share",
+        "sentence": "A scheduler MUST weight admission per tenant and, within a tenant, by priority, from configuration.\n"
+      },
+      "disposition": "U"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "one-provider-neutral-transcript",
+        "sentence": "A session's transcript MUST be held in one provider-neutral form from which each provider's request is\nrendered.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "priority-orders-everything-that-queues",
+        "sentence": "Model admission MUST be ordered by priority.\n"
+      },
+      "disposition": "U"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "priority-orders-everything-that-queues",
+        "sentence": "The order in which a partition processes its dirty sessions MUST be by priority.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "priority-orders-everything-that-queues",
+        "sentence": "Eviction, when a partition needs memory, MUST remove the lowest-priority idle sessions first.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/execution/direct-model-turns-and-scheduling.md",
+        "section": "priority-orders-everything-that-queues",
+        "sentence": "The deciders' compute pool MUST serve by priority.\n"
+      },
+      "disposition": "D"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/session-management/imperative-only.md",
+        "section": "the-platform-creates-no-root-session-on-its-own",
+        "sentence": "A keyed instance MUST be created only from a template a caller registered.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-is-acquired-only-for-work-that-needs-it",
+        "sentence": "Acquiring a host for a workspace MUST be a gated action that keeps the workspace's handle and lineage.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-is-acquired-only-for-work-that-needs-it",
+        "sentence": "A host acquired for a workspace MUST be released when the work that needed it ends.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A host MUST record each promise it makes before it answers the message that caused it.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A host MUST treat a reboot or a damaged promise record as a lost host.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A host that cannot record a promise MUST answer the message with a retryable error and make no new promise.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A host that starts a new epoch MUST quarantine the previous epoch's workspace copies rather than delete them at once.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A host that meets a record format it does not know MUST stop with an alarm rather than start a new epoch.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A lineage MUST have one writer instance at a time, fenced by a writer generation checked in the service's records before every host operation.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A destructive host operation MUST identify the workspace incarnation it targets and the lease it acts under.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A host MUST refuse a destructive operation that identifies another incarnation or lease.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-host-keeps-its-promises",
+        "sentence": "A host MUST refuse as never received a message whose admission time plus the retention bound and the skew bound has passed.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-snapshot-follows-every-changing-call",
+        "sentence": "A session MUST be able to continue from its last snapshot on another host after its host is lost.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-snapshot-follows-every-changing-call",
+        "sentence": "A restored tree MUST have the same content hash as its snapshot.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-snapshot-follows-every-changing-call",
+        "sentence": "A lost host MUST lose at most the calls in flight and the calls whose covering snapshot had not finished uploading.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-snapshot-follows-every-changing-call",
+        "sentence": "A snapshot MUST become durable only when its head commit succeeds against the lineage's current head, the live workspace incarnation, and the lineage's writer generation.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-snapshot-follows-every-changing-call",
+        "sentence": "A restored tree MUST be verified under the rules recorded in the snapshot.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-snapshot-follows-every-changing-call",
+        "sentence": "A restore whose verification fails after the configured retries MUST fail rather than hand over the tree.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-stored-value-belongs-to-one-session",
+        "sentence": "The service MUST keep for a session a value that is referenced by name, versioned, and immutable, each version recording what produced it.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-stored-value-belongs-to-one-session",
+        "sentence": "A stored value MUST be readable only by its session, or by a session acting for the same operator that holds the value's clearances through an explicit share.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-stored-value-belongs-to-one-session",
+        "sentence": "A stored value's id MUST be opaque.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-stored-value-belongs-to-one-session",
+        "sentence": "Every write of a stored value MUST pass the structured-secret detector before storage, with a match replaced by a marker that identifies the detector.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-free-tool-is-one-call-to-a-service",
+        "sentence": "The service MUST serve a tool that is one call to an already-scaled service without provisioning a host.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-free-tool-is-one-call-to-a-service",
+        "sentence": "A session MUST receive compute of its own only when its task must check out, build, or run code.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A host MUST run one tenant's workspaces only.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A tool MUST run unprivileged under resource limits.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A build cache MUST NOT be shared across tenants.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "The service's own tooling MUST run nothing a session can configure in a repository or in a home directory.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A tool process MUST NOT hold the host's store credential.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A build cache entry MUST be keyed by the content hash of its inputs, so that one session cannot corrupt another's builds.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A build cache entry MUST be served only to a session whose clearance covers the domain the entry came from.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A build cache entry MUST record the principal that wrote it.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "Every backend endpoint the service calls MUST come from its configuration.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "The service MUST use an unencrypted transport only to an endpoint its configuration marks for it, and only where the request carries no secret.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "Every backend call MUST be bounded in time and in size.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "a-workspace-is-isolated-and-bounded",
+        "sentence": "A session's use of the service MUST NOT be able to degrade another session's.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "credentials-are-per-call",
+        "sentence": "A call's processes MUST be terminated when the call ends, across any restart of the host agent.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "credentials-are-per-call",
+        "sentence": "A log, event, or saved output MUST NOT carry a secret or an endpoint token.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "credentials-are-per-call",
+        "sentence": "A tool identity MUST be unable to start a process that outlives or escapes its call.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "credentials-are-per-call",
+        "sentence": "A call whose supervisor is lost MUST end as stopped by the host.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "credentials-are-per-call",
+        "sentence": "A credential helper MUST fail rather than prompt.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "every-served-call-is-an-event",
+        "sentence": "The service MUST publish an event for every tool call it serves, carrying the operator, the tool, and the outcome, never content.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "every-served-call-is-an-event",
+        "sentence": "The service MUST publish an event for every call it makes to a backing service, carrying the service, the operation, the operator, and the status.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "hosts-report-health-and-a-lost-host-frees-its-leases",
+        "sentence": "A host MUST report its health on registration and on each heartbeat.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "hosts-report-health-and-a-lost-host-frees-its-leases",
+        "sentence": "An acquire MUST prefer a healthy host.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "hosts-report-health-and-a-lost-host-frees-its-leases",
+        "sentence": "An acquire that falls back to a degraded host MUST state the degradation as a warning on the result rather than block.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "hosts-report-health-and-a-lost-host-frees-its-leases",
+        "sentence": "A host that misses heartbeats past the configured stale window MUST be removed from the pool and its leases freed.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "it-is-a-tool-server-separate-from-the-reasoning-loop",
+        "sentence": "The service MUST be called as a tool server listed in an agent's definition.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "it-is-a-tool-server-separate-from-the-reasoning-loop",
+        "sentence": "Every call to the service MUST carry the session's identity.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "it-is-a-tool-server-separate-from-the-reasoning-loop",
+        "sentence": "The core MUST contain no logic specific to what the service does beyond calling its tools.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "it-is-a-tool-server-separate-from-the-reasoning-loop",
+        "sentence": "The service MUST be reachable only from the platform's nodes.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "offline-is-an-event",
+        "sentence": "A lost host MUST produce one event per lost workspace into the holding session, published through the platform's API, carrying the handle, the reason, the last durable snapshot or none, and the ids of the calls whose effects were discarded.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "offline-is-an-event",
+        "sentence": "The service MUST NOT restore a workspace after an unplanned loss without the session acquiring it again.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "offline-is-an-event",
+        "sentence": "A command the session was told was interrupted MUST have stopped, even on a host cut off from the service.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "offline-is-an-event",
+        "sentence": "A host MUST stop a lineage's commands when its host lease for the lineage ends unrenewed.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "offline-is-an-event",
+        "sentence": "A host lease MUST be renewed only by the lineage's writer.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "offline-is-an-event",
+        "sentence": "The writer MUST commit the next renewal of a host lease only after the host acknowledged the last.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "offline-is-an-event",
+        "sentence": "The service MUST declare a host lost only after its lease plus the margin since the last renewal it holds, or when the substrate reports the host stopped.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "The service MUST let a session acquire a workspace, operate on its files, submit a build from it, and release it.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A workspace MUST be addressed by a handle that is valid only for the session that holds its lease.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A workspace lease MUST belong to the service rather than to the platform.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A workspace lease MUST expire unless it is used, so that the platform needs no eviction hook.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "Acquiring a workspace MUST carry the scope the task's grant allows.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "The scope of an acquire MUST default to read-only.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A running command MUST count as use of the workspace's lease.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "An acquire of a workspace name on which the session already holds a lease MUST return that handle and change nothing.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "An acquire MUST NOT fail because the host that last held the workspace is unavailable.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A live workspace MUST be held by exactly one session.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A lineage MUST belong to the session that started it.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A new incarnation of a session MUST end every lease the session's older incarnations held.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A side effect of an older session incarnation MUST NOT be admitted once the service has recorded a newer one.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A handle, a lineage, a snapshot, or a receipt that its caller is not entitled to MUST answer as if it did not exist.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "An expired handle MUST fail with a distinct error that identifies the workspace's last snapshot.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A call's ending MUST be one of a closed set.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A call's ending MUST state by itself whether the call's effects inside the workspace exist.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "The service MUST NOT repeat on its own a command that may have acted outside the workspace.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A reconcile answer for a workspace call MUST identify the snapshot that followed the effect.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "An implicit cancel MUST be recorded when it is decided.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "Recovery MUST cancel rather than reattach to a command whose record is marked cancelled or whose lease has ended.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A call that its host never received MUST settle as interrupted at the current head.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A call that its host never received MUST NOT be sent to the host late.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A host MUST end a call no later than the lesser of the message's transit time and twice the clock-skew bound after its deadline.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A call's spooled output MUST NOT be cut while the call can still write.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "operations",
+        "sentence": "A late result MUST attach at most the configured tail of each output stream and state how many bytes it left out.\n"
+      },
+      "disposition": "R"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "placement-and-clearance",
+        "sentence": "A workspace type MUST carry its network placement, so that a tool needing a particular network runs on a workspace placed there.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "placement-and-clearance",
+        "sentence": "A session's own workspaces MAY reach each other.\n"
+      },
+      "disposition": "C"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "placement-and-clearance",
+        "sentence": "Acquiring a workspace for a repository MUST require the session's clearance for the repository's domain.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "placement-and-clearance",
+        "sentence": "A credential request for a repository outside the session's clearance MUST be refused at the time of the request, with an event.\n"
+      },
+      "disposition": "T"
+    },
+    {
+      "requirement": {
+        "file": "spec/decisions/workspace-service/build.md",
+        "section": "placement-and-clearance",
+        "sentence": "A workspace type MUST carry text through its tools unchanged, including characters outside the basic character set.\n"
+      },
+      "disposition": "R"
+    }
+  ],
+  "interpretation": "Finite source-hash-bound review rules; new source/report bytes invalidate this mapping. Conditional guards and MAY/SHOULD strength remain. No generated report indices are authoritative IDs.",
+  "current_bindings": "shared-profile-bindings.json",
+  "note": "Preserved earlier review classification; selected deferrals and permissions/browser refinements are reconciled in the current finite binding rules. Historical N/U labels are not current pending decisions."
+}

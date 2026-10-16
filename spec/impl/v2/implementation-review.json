@@ -1,0 +1,173 @@
+{
+  "capabilities": {
+    "V2_CONTROL": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_NATIVE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_PRODUCT": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_QUALIFY": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_WORKSPACE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    }
+  },
+  "milestones": {
+    "V2_BOOT": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_CHARTER_CODEX": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#shared-charter-behavior-selected"
+    },
+    "V2_CHARTER_JOIN": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#shared-charter-behavior-selected"
+    },
+    "V2_CHARTER_NATIVE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#shared-charter-behavior-selected"
+    },
+    "V2_CHARTER_RECORDS": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#shared-charter-behavior-selected"
+    },
+    "V2_COLLAB_CONTRACT": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-workflow-expansion-queued"
+    },
+    "V2_COLLAB_DELIVERY": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-workflow-expansion-queued"
+    },
+    "V2_COLLAB_DOCUMENTS": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-workflow-expansion-queued"
+    },
+    "V2_COLLAB_JOIN": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-workflow-expansion-queued"
+    },
+    "V2_COLLAB_QUESTIONS": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-workflow-expansion-queued"
+    },
+    "V2_COLLAB_WORK": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#collaboration-workflow-expansion-queued"
+    },
+    "V2_DELEGATE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_E2E": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_LATER_SCALE": {
+      "approval": "proposed",
+      "approval_ref": ""
+    },
+    "V2_NATIVE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_NATIVE_JOIN": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_PRODUCT": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_RECOVERY": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_RELEASE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_SCALE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_STORE": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_WORKER": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    }
+  },
+  "provenance": {
+    "README.md": "c1c0214e0c5c044f8dc53c246385b67d6d260b80205bf5a5ae802bf7e598ebdd",
+    "compatibility-review.md": "3402f0c3f0729f57059ab8e420ca85057a53b2d9d0bdba0a1ec6c0cefa4d3be9",
+    "decisions.md": "b323d08b195c58fa6a835c9d126bd7e716d0940971e3cd6ddadde12b1bfe8c33",
+    "dependency-profile.md": "100baf8def0e237e95ed12d1af29f55423e2d35b2581b85234ad3ca8af6aa963",
+    "production-target.md": "b351b40c5daedbe9baafa202be4a49ea219848cdeb05bc146ba7b3decd117688",
+    "proposals/charter-incorporation.md": "52eda2e122d58d1fc728446d760cbaea6d184a9ebe81165ea85a77ea8d2fe87d",
+    "proposals/collaboration-mcp.md": "fb4cc688ba5906a36846a1e93bc956a2c754b22b2d9a5b8675d9ba9022418998",
+    "proposals/collaboration-workflows.md": "40d6c72357a824ed32b80d4b5f68b5ba93bf1a57c644594cc4942f3e94a75015",
+    "proposals/governance-foundation.md": "156ceee7693e0d5181ce810c0579184f5be780daff64dcd03f13dd3c6ad4a954",
+    "proposals/shared-profile-amendment.md": "eee3d13fa70fba0a876f8f5f41ca76d80951817f4f9b0ffcd802418f509ac486",
+    "proposals/shared-profile-bindings.json": "4bde3dc951af02ed207c40ccbeb2f3c1de6a73153357bd6f34e87320645ae506",
+    "proposals/shared-profile-review.patch": "df26b3e0db6382a983b126c7fb09611b85dd0a053d82ee88bb3e1bb4cbb83635",
+    "proposals/shared-profile-rules.json": "4c6d9005761ffd968c1db54008a84df9728d59f6871611820d7d9aebc49facd5",
+    "proposals/worker-resource-envelope.md": "0ee3e6257d222e836fdd009e679b4ce179bc3fd67fbb81f0e90b6fb66f992f02",
+    "protocol.md": "d7b9f81fa885f058527cf74d3408d20e6e5a23e4f3d2ad26e633e96f6dcec631",
+    "review-packet.md": "c02f8b35910bcce3eb96d053d666d7fdb6c855201a3d2721c306215533f9894b",
+    "technology-review.md": "7b5ab92ecca4f96846ad828d7f44c03ddf10f1519b872604607b301cb44f1bb9"
+  },
+  "schema_version": 1,
+  "source_hashes": {
+    "capabilities": "ba7071c851c4a8327de05329c56c7fe6cead1f09d73ae2ac5029e907bb86ba69",
+    "main": "e34d30a4c1022f13ba7196e1944b5a0a7f8c5f09ef0546c098b57a515a063c41",
+    "phases": "cae1bf7e721e57f4e99a62f84aa22b6f9114e4fd71260188e6790c4736fe0ebf"
+  },
+  "stages": {
+    "V2_S1": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_S2": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_S3": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_S4": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_S5": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_S6": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_S7": {
+      "approval": "approved",
+      "approval_ref": "decisions.md#v2-build-execution-authorized"
+    },
+    "V2_S8": {
+      "approval": "proposed",
+      "approval_ref": ""
+    }
+  }
+}

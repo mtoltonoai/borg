@@ -1,0 +1,110 @@
+--- a/constitution.md
++++ b/constitution.md
+@@ -207,6 +207,24 @@
+ 
+ An amendment that weakens a protected guarantee MUST require explicit human approval.
+ 
++## Conformance Profiles
++
++### A Profile Has An Explicit Scope
++
++A deployment MUST identify the shared conformance profile it implements.
++
++The full-session profile MUST remain the default unless another profile is explicitly selected.
++
++A profile MUST identify each shared requirement it replaces by source file, section, and exact sentence.
++
++A profile MUST state the replacement guarantee or unsupported capability for each replaced requirement.
++
++A requirement without an explicit profile disposition MUST remain applicable.
++
++A profile selection MUST NOT bypass the amendment discipline for protected guarantees.
++
++The full-session profile is the existing scope. The task-runtime profile is a separately reviewed scope; its registration does not activate it, change an existing source pin or establish conformance. A profile does not rename an implementation identifier into a protocol version. The [task-runtime outcome](spec/decisions/runtime-profile/task-runtime.md) defines the change-process boundary for a proposed reduced task-oriented scope.
++
+ ## Governance
+ 
+ This constitution supersedes all other specifications where they conflict on an invariant. The contracts
+--- a/spec/glossary.md
++++ b/spec/glossary.md
+@@ -497,3 +497,11 @@
+   stale, orphaned (under the product alternative of the deferred entry "The Specification As A Product").
+ - **Exception**: a recorded, reasoned decision not to implement a requirement in one repository (under the product alternative of the deferred entry "The Specification As A Product").
+ - **Lifecycle (specification)**: Draft, Preview, Target, Green, Superseded, Abandoned (under the product alternative of the deferred entry "The Specification As A Product").
++
++## Conformance Profile
++
++An explicitly selected scope of shared requirements, retaining original requirement identities and stating every replacement or unsupported capability. The full-session profile is the existing default scope; the task-runtime profile is an inactive proposal until its scope and gate are adopted together. A profile is not an implementation ID or wire version.
++
++## Task Contract
++
++An immutable specification of a task runtime's accepted input/result, ownership, worker/executor and recovery boundaries. It does not imply access to a supplied executor's internal model/tool state.
+--- a/spec/record.md
++++ b/spec/record.md
+@@ -273,3 +273,7 @@
+ - Commented out (12 files): `spec/decisions/execution/hosted-harness.md`, `spec/decisions/tenancy-scope/registration.md`, `spec/decisions/tenancy-scope/cells.md`, `spec/decisions/collaboration-platform/adapt.md`, `spec/decisions/session-management/declarative.md`, `spec/decisions/session-management/declarative-only.md`, `spec/decisions/session-management/both.md`, `spec/decisions/workspace-service/existing.md`, `spec/decisions/authority-widening/human-approvals.md`, `spec/decisions/authority-widening/record-based-autonomy.md`, `spec/decisions/durability/recovery-store.md`, and `spec/decisions/conformance-product/product.md`.
+ 
+ To change a selection: for one of the two decisions, settle it by its document's method and write the new row in part A; for a fixed default, reopen it only on the trigger its entry in [decisions/deferred.md](./decisions/deferred.md) states, settle it by the same method, and write the new row in the fixed-defaults table. In the configuration, remove the leading `# ` from each line of the newly adopted files' blocks and add it to each line of the blocks of the files they replace; run the gate. Citations in the code that quote a requirement of a file no longer listed then fail as stale, and the list of those failures is the work the change creates. An outcome that has no file (none, gate-only) changes nothing in the configuration; a declared default changes nothing in the configuration either, because it is a value in part B rather than a file.
++
++## Proposed Task-Runtime Profile
++
++The existing gate and decisions continue to describe the full-session profile. The task-runtime outcome is registered as an inactive proposal; no selection in part A or active gate entry changes in this patch. V2's accepted directions are recorded in its own implementation decision record. The current v2 scope binding proposal accounts for every original native requirement, preserving its exact identity and distinguishing retained details, deliberate replacements, absent facilities and guarded clauses. Before shared activation, adopt that scope with its immutable task target and validate effective native applicability and promotion checks. Protected-guarantee amendments need explicit human adoption; no prior implementation permission is an implicit waiver.
+--- a/spec/traceability.md
++++ b/spec/traceability.md
+@@ -86,3 +86,7 @@
+ | 20. Rationale | (descriptive; no normative file; the reasons for the invariants of part 1) |
+ 
+ Implementation Organization is defined in core/implementation-organization.md and maps to overview section 15. Its thirteen requirement sentences retain their stable subordinate headings; their identities use that file rather than core/simulation-and-conformance.md. The updated exact quotations and governing classification are in record.md under Implementation organization; historical citations keep their original identities.
++
++## Proposed Task-Runtime Profile
++
++The inactive [task-runtime outcome](decisions/runtime-profile/task-runtime.md) realizes implementation organization and conformance under overview section 15. The [constitutional profile scope](../constitution.md#a-profile-has-an-explicit-scope) retains exact requirement identities and protected-guarantee amendment discipline. Its registration is not evidence that an implementation satisfies the full-session platform or that the proposal is active.
+--- a/.duvet/config.toml
++++ b/.duvet/config.toml
+@@ -278,3 +278,8 @@
+ 
+ [report.snapshot]
+ enabled = true
++
++# proposed runtime-profile outcome; full-session scope remains active
++# [[specification]]
++# source = "spec/decisions/runtime-profile/task-runtime.md"
++# format = "markdown"
+--- /dev/null
++++ b/spec/decisions/runtime-profile/task-runtime.md
+@@ -0,0 +1,35 @@
++# Task Runtime Profile
++
++> Proposed shared outcome, inactive in the gate. Capitalized requirement keywords have the constitution's meanings. Each requirement is a single obligation under a stable heading. This profile describes task-level scope; concrete technology choices remain in each implementation specification.
++
++## Scope And Adoption
++
++The task-runtime profile separates an operator-controlled task system from the full-session platform. It does not claim control of every internal turn, tool call or record of a supplied executor. Existing implementations retain the full-session profile unless a complete alternative profile is explicitly selected with an immutable target.
++
++### The Task Contract Is Identified
++
++A task-runtime deployment MUST identify the immutable task contract it implements.
++
++The task contract MUST identify the task state it durably owns.
++
++The task contract MUST identify state owned only by a supplied executor.
++
++The task contract MUST identify its worker-loss and storage-loss boundaries.
++
++### Every Departure Is Accounted For
++
++A profile disposition MUST retain the original requirement identity.
++
++A replacement disposition MUST identify its replacement requirement or unsupported capability.
++
++An unresolved profile disposition MUST prevent a claim of profile conformance.
++
++A profile MUST preserve the distinction between selected behavior and implementation or execution evidence.
++
++The proposed v2 scope ledger is review input, not an approved waiver set. Retained requirements keep their strength and guards. A permission does not become an obligation to implement its optional feature. A conditional requirement remains conditional. The keyword-definition extraction anomaly is separately identified rather than represented as runtime behavior.
++
++## Compatibility And Gate Discipline
++
++The original signed assertions, stored forms, tool calls and full-session endpoints retain their identities for existing consumers. A task-runtime endpoint does not claim those wire contracts merely because it transports similar data. A non-additive change for an existing deployed consumer still requires the constitution's version and migration discipline. No existing dataset is converted by adopting a specification document.
++
++Record/profile selection, complete exact requirement dispositions, replacement references, native reporting and promotion checks need review together before activation. Registering this file with commented gate lines does not implement a profile-aware gate, fabricate a snapshot baseline or authorize deployment.
