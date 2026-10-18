@@ -86,6 +86,28 @@ The common interface is MCP for native and Codex tasks. It is layered over the e
 
 The initial space is the existing trusted one-tenant task product. No project identifier, private-project boundary or fine-grained permission engine is inferred. Caller task/attempt binding is checked by the adapter and controller, but a caller-supplied identity is not authentication; the underlying ordinary API still relies on host/SSH trust. This interface does not establish containment of code that can reach that API directly. Existing collaboration operations retain their revision, ownership, accepted-input and lifecycle restrictions. Configured child creation preserves its template, parent association and accounting rather than becoming unrestricted task submission. Versioned documents, comments, direct-recipient questions and reviews, the supported decision queue, resolver waits and committed-resolution delivery extend this same operation layer. General team routing, imported answers and broader collaboration facilities remain outside this increment.
 
+### Bounded Read Pagination
+
+Permitted reads of lists or individual content that exceed the configured response bound MUST return bounded pages.
+
+Each read page MUST state whether the requested read is complete.
+
+A nonfinal read page MUST provide a continuation for the remaining permitted content.
+
+A content continuation MUST remain bound to the exact source content it continues.
+
+A paginated read MUST NOT silently truncate the requested content.
+
+The collaboration tool interface MUST NOT automatically concatenate all read pages into model context.
+
+The collaboration tool interface MUST provide the same pagination behavior to both executors.
+
+The browser interface MUST expose the same read pages and continuations as the shared agent interface.
+
+Pagination covers both list results and the content of individual permitted records, including task instructions and results, document versions and repository reads within their existing selected ranges. An oversized read returns a useful bounded page; obtaining another page is an explicit read. Completeness is relative to the requested content or range, and existing retained-output truncation remains visible. Pagination does not enlarge source admission, configured limits or read authority, expose excluded data, or change canonical operation identities and write semantics.
+
+A content continuation refers to the same identified object version or repository content. An unrelated controller change does not change that content identity. If the identified content is no longer available under the applicable read rules, continuation returns an explicit refusal rather than substituting a different source. Existing list ordering and keyset continuation remain; pagination does not create a historical snapshot of an entire mutable list. Browser continuation displays partial content as partial and does not use it as the complete replacement body for an edit.
+
 ### Collaboration Records Have Stable Identity And Provenance
 
 The supported records are documents, document versions, comments, questions, answers, reviews and task collaboration waits. They use the existing controller database, application schema discipline, limits metadata, mutation receipts and canonical operation layer. A collaboration revision orders product changes and is distinct from the controller's operation or receipt revision. Activities carry their actual typed record subject; a document or question does not require a fabricated task.
@@ -222,7 +244,7 @@ An unblock activity MUST carry the typed outcome of each wait it ends.
 
 ### Committed Resolutions Reach Their Consumers
 
-Resolution delivery uses the existing controller state and platform wake/command mechanism. It is distinct from the non-triggering memory notices. The recorded destination identifies an existing task/session or the responsible direct recipient; delivery never creates a new session or implicit follow-up task. Agent input arrives at a supported safe model/tool boundary. A waiting task resumes only after all waits end and the unchanged execution admission, original deadline/budget, cancellation and uncertain-effect rules permit it. The current recipient keeps unresolved decisions visible when no active session can consume them. General record-topic fanout, arbitrary subscriptions and person-notification topics remain deferred.
+Resolution delivery uses the existing controller state and platform wake/command mechanism. The recorded destination identifies an existing task/session or the responsible direct recipient; delivery never creates a new session or implicit follow-up task. Agent input arrives at a supported safe model/tool boundary. A waiting task resumes only after all waits end and the unchanged execution admission, original deadline/budget, cancellation and uncertain-effect rules permit it. The current recipient keeps unresolved decisions visible when no active session can consume them. General record-topic fanout, arbitrary subscriptions and person-notification topics remain deferred.
 
 An answer delivery MUST target its active asker or otherwise the record's current responsible owner.
 
@@ -324,19 +346,21 @@ This increment adopts the shared charter-reference requirements and the charter-
 
 ### Definitions Carry Reusable Charters
 
+For this V2 profile, a supplied outer turn is one public executor task-input exchange identified by its reported thread and turn identities. Its supplied outer-turn result is the final assistant result exposed by that exchange, including its observed terminal status. These terms do not redefine the shared model Turn or claim visibility of internal model requests, tool-only replies or intermediate reasoning. Native charter requirements continue to cover every actual model turn. The supplied-executor exception is recorded in [the profile proposal](proposals/codex-charter-exception.md).
+
 An agent definition MUST identify its reusable charter source.
 
 The native executor MUST deliver the effective charter to its model.
 
 The supplied executor MUST deliver the effective charter to its model.
 
-A session MUST retain the charter revision effective at each turn boundary.
+A session MUST retain the charter revision effective for each native turn or delivered for each supplied outer turn.
 
 The accepted TaskInput and its original definition revision stay immutable. The initial charter binding comes from that definition. A later explicitly accepted charter change has a separate pending/effective session binding, with its original operation identity and exact source revision; it is not a rewrite of accepted inference, executor, tool profile, task budget or limits. Selecting a new future-task head alone does not change an existing turn. Historical tasks and replies without charter data remain historical rather than receiving invented citations.
 
 ### Charter Changes Apply At Safe Boundaries
 
-A charter change MUST apply to a running session at its next turn boundary.
+A charter change MUST apply to a running native session at its next turn boundary.
 
 A charter change MUST NOT apply between a tool call and the delivery of its result.
 
@@ -346,7 +370,13 @@ A charter change MUST NOT wake an idle session solely to adopt it.
 
 A charter change MUST reach the supplied executor only at a supported step boundary.
 
-The turn boundary is before the next model request is built, after every result of the preceding turn has committed. A supplied-executor step boundary has neither a model call nor a tool call in flight. Publication, adoption and delivery are distinct durable facts; a desired source revision is not effective merely because it is stored. Recovery preserves the prior effective revision until the pending transition is safely adopted and does not resend an uncertain model request or tool effect. The configuration path retains existing caller authority and canonical mutation receipts; the future-only limit-update tool does not acquire charter-writing authority.
+A supplied-executor charter change MUST retain the prior delivered revision until delivery at a qualified public input boundary is acknowledged.
+
+A supplied-executor charter change without a qualified public input boundary MUST remain visibly pending or unsupported.
+
+The native turn boundary is before the next model request is built, after every result of the preceding turn has committed. For the supplied executor, the boundary is an explicitly qualified public task-input boundary; an item completion, idle notification, active-turn steering or append acknowledgment alone does not establish it. The initial owned context before its first turn is a distinct delivery boundary. A later update is admitted only where the pinned interface and actual consumer establish safe ordering with prior work. Otherwise it stays pending or unsupported without changing the delivered source, waking an idle session, cancelling work or starting another context to bypass the missing boundary.
+
+Publication, requested update, acknowledged delivery and model consumption are distinct facts. A desired source revision is not delivered merely because it is stored, and a delivery acknowledgment is not evidence about hidden requests or semantic compliance. Recovery retains the original source and pending state without resending an uncertain model request or tool effect. The configuration path retains existing caller authority and canonical mutation receipts; the future-only limit-update tool does not acquire charter-writing authority.
 
 ### Native Charter Changes Preserve Prompt Continuity
 
@@ -360,7 +390,7 @@ A native compaction that follows a charter change MUST write its summary under t
 
 A native charter change arriving while a compaction is already due MUST be included in that compaction.
 
-This is the separately selected response to a native charter configuration change, not a consequence of a missing or invalid reply citation. The selected native executor/provider compaction path still needs implementation and qualification under configured bounds. It does not select a general transcript, blob service, policy engine or an independent supplied-executor compactor. A summary or prompt-cache representation never becomes authoritative charter source. Pinned supplied-executor delivery and reply observability require actual adapter qualification; a startup prompt or final result alone does not prove every turn.
+This is the separately selected response to a native charter configuration change, not a consequence of a missing or invalid reply citation. The selected native executor/provider compaction path still needs implementation and qualification under configured bounds. It does not select a general transcript, blob service, policy engine or an independent supplied-executor compactor. A summary or prompt-cache representation never becomes authoritative charter source. Pinned supplied-executor delivery and observable final results require actual adapter qualification under the task-level exception; they do not prove hidden model turns. The native every-model-turn contract remains unchanged.
 
 ### A Charter Has Normative Requirements
 
@@ -378,25 +408,29 @@ A rendered or compacted representation of a charter MUST NOT replace that charte
 
 ### Every Turn Reply Carries Charter References
 
-Every turn reply MUST carry structured charter-reference metadata.
+This section covers every native model reply and each publicly reported supplied outer-turn final result. Inaccessible supplied-executor internal replies are outside this V2 profile. Public intermediate metadata, when observed, remains labeled with its actual item/outer-turn scope rather than presented as a complete model reply. The host's exact delivery-source binding is distinct from the model's declared references; neither missing citations nor a missing final result is filled in by the host.
 
-A turn reply's charter-reference metadata MUST identify the authoritative charter revision effective at that turn's boundary.
+Each native turn reply or supplied outer-turn result MUST carry structured charter-reference metadata.
 
-A turn reply's charter-reference metadata MUST identify the specific charter clauses governing its response or actions.
+Charter-reference metadata MUST identify the authoritative charter revision effective for its native turn or delivered for its supplied outer turn.
+
+Charter-reference metadata MUST identify the specific charter clauses governing its associated response or actions.
 
 A charter clause reference MUST resolve to the clause's source file, section, and exact sentence within the identified charter revision.
 
-A turn reply's durable record MUST retain its charter-reference metadata.
+The durable record of a native turn reply or supplied outer-turn result MUST retain its charter-reference metadata.
 
-A record that cites a turn reply for audit inspection MUST preserve its association with that reply's charter-reference metadata.
+A record that cites a native turn reply or supplied outer-turn result for audit inspection MUST preserve the cited reply's or result's charter-reference metadata association.
 
 ### Reference Checks Produce Audit Information
 
-The platform MUST check each turn reply's charter references against the authoritative charter revision effective for that turn.
+The platform MUST check each native turn reply's or supplied outer-turn result's charter references against the authoritative charter revision effective for the native turn or delivered for the supplied outer turn.
 
-The platform MUST record invalid or mismatched charter references with the reply they came from for audit inspection.
+The platform MUST record invalid or mismatched charter references with the native turn reply or supplied outer-turn result they came from for audit inspection.
 
 A charter reference check MUST NOT be treated as proof of behavioral compliance.
+
+For supplied results, the supported final-output surface requests genuine model-declared references. Missing or malformed declarations remain explicit passive findings; an unavailable or interrupted final result remains unavailable or interrupted. A bounded progress summary is not a substitute for the original final result and its metadata.
 
 These checks establish reference validity, not semantic compliance. This section requires audit recording and does not itself require corrective feedback, retry, reset, compaction, admission blocking, or a model judge. It does not prohibit separately authorized policy from consuming the audit records. Existing configuration adoption, output governance, and compaction requirements continue to apply. Streaming boundaries, empty applicability, and charter-specific retention rules remain unspecified by this section.
 
@@ -442,25 +476,63 @@ Executor choice does not create a different agent identity type. The execution c
 
 The template is the agent's durable identity. Its stable definition identity is independent of its immutable configuration revisions. A session is an instantiation of that agent, not a new agent or a new memory namespace. Sessions of one agent can execute concurrently with their own task associations, attempts, workspace or executor context, progress and results. They share the agent's explicitly recorded memory. A task identifies work; a session identifies its agent instantiation; an attempt identifies one fenced execution of that work. Submission replay, retry, recovery and continuation preserve the recorded session association instead of creating another session implicitly. New instantiations receive new session identities. Changing a definition creates a revision for future instantiations without changing the accepted revision of an existing session. Shared memory writes retain current-session authority and expected-memory-revision checks; a conflicting update requires a fresh read and a new explicit operation rather than silently overwriting another session's memory.
 
-### Shared Memory Changes Reach Sessions
+### Agent Identity Lifecycle
 
-A committed memory update MUST make its changed key and committed revision available to other active sessions of the same agent.
+The controller MUST support explicit agent registration without creating a task.
 
-A session MUST receive pending memory-change notices at its next safe model or tool boundary.
+Retiring an agent identity MUST remove it from the active agent directory.
 
-Pending memory-change notices MUST remain recoverable after a process restart.
+A retired agent identity MUST be refused for new work.
 
-Memory-change notification delivery MUST NOT interrupt a tool that has begun execution.
+Agent retirement MUST preserve retained historical records.
 
-Memory-change notices MUST NOT create a session.
+Agent retirement MUST NOT cancel already accepted work.
 
-A memory-change notice MUST NOT initiate a model request by itself.
+Task submission MUST NOT reactivate a retired agent identity.
 
-Pending notices for the same memory key MAY be coalesced to the latest committed revision.
+A retired agent identity MUST remain resolvable for historical reads.
 
-A notice identifies a changed key and revision; the receiving session reads current memory when it needs the value. The existing agent memory scope, current-session checks and expected-revision write conflicts remain. A session does not receive a notification caused by its own write. Multiple sessions can receive the same change without sharing their conversations or execution state. Native and supplied-executor sessions use the same committed change source.
+Registration and retirement use the existing operator operation boundary, immutable definition identities and durable mutation receipts. Retirement removes an identity from browser and shared-tool active directory pages before pagination. New work includes new sessions, new recipient assignments and changes selecting a definition for future work. Original operation replay, accepted sessions, cancellation, completion, explicit memory and historical actor references retain their existing semantics. Historical detail views identify retired agents; retirement is not deletion of their task, session, memory or audit records.
 
-Delivery uses the existing durable controller state and wake mechanism. A bounded cursor and pending batch survive restart; a lost wake or uncertain delivery acknowledgment does not silently advance past an undelivered change. Repeated notification of the same revision is harmless and does not authorize repeating a mutation. Newly started sessions use the existing memory reads for prior values; the durable notification start point covers subsequent updates. Notices enter an active executor at its supported safe input boundary without interrupting work, creating a new task or session, or calling a model for each write. A completed or idle execution is not restarted merely because memory changed. Automatic observation-derived memory and a general subscription system remain deferred.
+### Default Task Assignment
+
+The default task agent MUST be selected through metadata.
+
+A new root task submitted without an explicit agent MUST resolve the configured default agent identity.
+
+An explicitly selected task agent MUST take precedence over the default agent identity.
+
+Default task assignment MUST refuse when no configured active registered identity can be resolved.
+
+The browser interface MUST support task submission without an explicit agent selection.
+
+The selected deployment default is triage. This is a configured identity, not a hardcoded role in the controller. Default resolution belongs to the canonical submission transaction, after original-operation replay and before accepted-input publication. The accepted task retains its explicit selected agent and immutable definition revision under the existing admission, ownership and durability rules. Changing the default or retiring that identity does not retarget an accepted task or change the outcome returned by an exact retry. Explicit submissions and configured child delegation retain their existing selection rules; omission does not create an unowned task or authorize an alternative executor.
+
+### Task Reassignment Creates A New Session
+
+An accepted reassignment to a different agent MUST create a distinct session for the same task identity.
+
+A task reassignment MUST retain the task's prior session and execution-input history.
+
+A reassigned session MUST bind the selected target agent's accepted definition revision.
+
+A reassigned session MUST NOT execute until the prior execution is known unable to continue.
+
+A reassigned session MUST NOT execute until relevant uncertain external effects are reconciled.
+
+A task reassignment MUST preserve the task's accepted deadline.
+
+A task reassignment MUST preserve its recorded usage accounting.
+
+Explicit task reassignment creates a new agent instantiation; ordinary retry and recovery still retain their recorded session. The original task submission, definition and execution inputs remain immutable admission history. The current session has a separately accepted execution input, with the assigned agent's own charter, inference settings and agent-keyed memory. A handoff preserves acknowledged checkpoints, existing task acceptance obligations, dependencies and recorded outcomes. It is neither task completion nor authority to repeat an earlier effect. Historical session views retain their actual provenance.
+
+A running agent can request a handoff through the canonical assignment operation. The controller records the pending target and stop intent durably; successor execution waits for the existing physical-stop and effect-reconciliation conditions. Original operation retry returns the original handoff outcome, including its target session identity, rather than creating another session. Late observations can settle the old execution's recorded obligations but cannot authorize effects under the successor session. Terminal completion, cancellation, waits and handoff follow the existing committed task ordering.
+
+An assignment validates the target definition and required execution operands under existing authority. Native read access does not become writable repository access. A native-to-coding handoff uses an explicitly accepted coding target, repository and acceptance configuration; absence or incompatibility is a visible refusal. This configuration does not create a child task or enable automatic executor fallback. Merely changing a collaboration record's responsible owner remains distinct from the explicit execution-assignment operation.
+
+### Shared Memory Is Read Explicitly
+
+Sessions share the agent's durable memory through explicit reads and writes. Automatic memory-change notification delivery is not required for v2. Existing agent scope, session authority, expected-revision write conflicts and memory persistence remain.
 
 ### The Native Executor Is Bounded
 
@@ -712,7 +784,7 @@ Failure of the completion check MUST leave the task visibly blocked without auth
 
 An authorized cancellation or emergency stop MUST NOT wait for voluntary completion admission.
 
-These checks govern a task's claim that it is done and its ordinary voluntary stop at an observable supported executor boundary. Required work is derived from the accepted task, declared acceptance checks and explicit canonical waits; required input is an addressed outcome owed to that continuation under the existing delivery rules. An optional unanswered question, a review with no explicit wait, or an advisory memory notice does not create required work, a human approval gate or an extra model request. The implementation does not infer semantic completeness from arbitrary prose.
+These checks govern a task's claim that it is done and its ordinary voluntary stop at an observable supported executor boundary. Required work is derived from the accepted task, declared acceptance checks and explicit canonical waits; required input is an addressed outcome owed to that continuation under the existing delivery rules. An optional unanswered question or a review with no explicit wait does not create required work, a human approval gate or an extra model request. The implementation does not infer semantic completeness from arbitrary prose.
 
 The existing native response and supplied-executor adapter boundaries need actual integration. An executor exit, pending notice, assigned continuation, or committed wait is not evidence that the input was consumed. Completion and applicable-input changes are ordered by the durable owner before acceptance. A refused stop continues only through the existing safe boundary and admission checks; it never interrupts an already dispatched effect, resets a budget, replaces a task or silently repeats an uncertain operation. A blocked task has an explicit existing event or resume path; bounded continuation is not an automatic retry loop.
 
@@ -1009,6 +1081,18 @@ Restart MUST reconcile incomplete cleanup before treating its resources as recla
 A cleanup outcome MUST distinguish reclaimed, retained and uncertain resources.
 
 Cleanup MUST preserve durable task results, histories, checkpoints, audit metadata, operation receipts and recovery journals in the initial profile.
+
+Cleanup MUST copy required transcripts from an eligible terminal supplied-executor attempt's private home to retained storage outside the contents selected for removal.
+
+Cleanup MUST verify the completeness and durability of each required transcript copy before removing its source.
+
+Cleanup MUST reclaim the remaining unneeded contents of an eligible terminal supplied-executor attempt's private home under its configured retention policy.
+
+For this cleanup scope, a supplied-executor private home is the local state created for one task attempt. Eligibility uses the existing canonical terminal, stopped-descendant, active-work, uncertainty, unacknowledged-operation and saved-conversation recovery checks, together with the existing status-specific retention interval and first safe observation. Required transcripts are the existing executor transcript material selected for retention by the adapter's recorded file and reader correspondence; absent optional material is recorded as absent rather than fabricated. A missing expected transcript, incomplete copy or failed verification leaves its source preserved.
+
+The retained transcript copy is outside the removal set and retains the source identity and complete selected bytes. Its durability has the existing local-storage scope: ordinary process restart while that storage remains intact. Copy verification does not add host-loss survival, backups, remote archival, a general artifact service or a provider-neutral replayable transcript. It does not turn the retained archive into an executable home or a recovered conversation.
+
+Required platform-owned journals may remain byte-identical at their original paths so existing readers keep their current meaning. This does not require duplicate journal copies or removal of the top-level home directory. An opaque supplied-executor database is not by itself an indefinite retention exception; a retention hold identifies required platform data or an unresolved obligation. Once the required copies and existing guards permit removal, other unneeded supplied-executor home contents are disposable. Existing metadata defaults and bounded cleanup controls are unchanged.
 
 The initial metadata defaults make safely disposable successful-attempt workspaces eligible immediately, retain failed or cancelled workspaces for 24 hours, and make an unreferenced reconstructible repository cache eligible after seven idle days. These delays do not override any safety hold. Eligibility uses canonical terminal and publication records, plus a durably recorded first observation that all cleanup conditions were met; filesystem modification time or a completed worker-command flag alone does not. Successful cleanup preserves any uncommitted nonignored source. After the failed or cancelled retention interval, uncheckpointed local edits may be discarded only when no active or unresolved work depends on them. An external repository or historical checkpoint reference alone does not pin a reconstructible worker-local cache. Cleanup records its policy revision and resumes bounded work after restart. Completed worktrees include their disposable build outputs; the central repository keeps acknowledged checkpoints.
 

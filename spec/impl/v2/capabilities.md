@@ -2,7 +2,7 @@
 
 This is the sole authored capability/dependency inventory for the proposed v2 delivery plan. Source lines quote native v2-owned requirements; they are references, not duplicate authored obligations. This inventory does not claim coverage of the shared2105-entry contract. Profile selections remain recorded in decisions.md; declaration adoption and actual readiness are kept in separately bound review/progress metadata.
 
-Source snapshot: 5dc96026b71b18687165376918375fd824f345c4a1d61c6928f49939181da2e8
+Source snapshot: abf59fee40596a7f70f7d6a2ac41fa0f002505962032f417b22509c080a2c9b0
 Source selection digest: 04967de989a49a8602257f54a1bf400c52960f9e51a829e7e8394728e82b20b7
 
 The snapshot is a non-authoritative evaluation of v2-owned main-spec requirements only; it is neither the shared target nor the real runtime lock. Allocation comments identify a primary acceptance location; generated native links and a separate exact-allocation check verify them. Interface-only batches qualify their own component seam; actual product integration is closed by the integrated journey/recovery milestones.
@@ -119,6 +119,21 @@ Source: spec/impl/v2/implementation.md#durable-commands-have-stable-identity | A
 <!-- Allocation: V2_STORE#STATE | delivery-process -->
 Source: spec/impl/v2/implementation.md#dependencies-and-admission-are-bounded | Task admission MUST select the oldest eligible task within the requested executor's available capacity.
 <!-- Allocation: V2_STORE#ADMISSION | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | Permitted reads of lists or individual content that exceed the configured response bound MUST return bounded pages.
+<!-- Allocation: V2_STORE#READ_PAGINATION | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | Each read page MUST state whether the requested read is complete.
+<!-- Allocation: V2_STORE#READ_PAGINATION | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | A nonfinal read page MUST provide a continuation for the remaining permitted content.
+<!-- Allocation: V2_STORE#READ_PAGINATION | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | A content continuation MUST remain bound to the exact source content it continues.
+<!-- Allocation: V2_STORE#READ_PAGINATION | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | A paginated read MUST NOT silently truncate the requested content.
+<!-- Allocation: V2_STORE#READ_PAGINATION | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | The collaboration tool interface MUST NOT automatically concatenate all read pages into model context.
+<!-- Allocation: V2_STORE#READ_PAGINATION | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | The collaboration tool interface MUST provide the same pagination behavior to both executors.
+<!-- Allocation: V2_STORE#READ_PAGINATION | behavior -->
+
 Source: spec/impl/v2/implementation.md#shared-collaboration-tool-interface | The collaboration tool interface MUST expose the existing task-space reads to both executors.
 <!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
 Source: spec/impl/v2/implementation.md#shared-collaboration-tool-interface | The collaboration tool interface MUST expose configured task-space mutations under their current operation rules.
@@ -149,20 +164,6 @@ Source: spec/impl/v2/implementation.md#repository-reads-through-the-shared-tool-
 Source: spec/impl/v2/implementation.md#repository-reads-through-the-shared-tool-interface | An agent repository-read operation MUST NOT modify repository content.
 <!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
 
-Source: spec/impl/v2/implementation.md#shared-memory-changes-reach-sessions | A committed memory update MUST make its changed key and committed revision available to other active sessions of the same agent.
-<!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
-Source: spec/impl/v2/implementation.md#shared-memory-changes-reach-sessions | A session MUST receive pending memory-change notices at its next safe model or tool boundary.
-<!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
-Source: spec/impl/v2/implementation.md#shared-memory-changes-reach-sessions | Pending memory-change notices MUST remain recoverable after a process restart.
-<!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
-Source: spec/impl/v2/implementation.md#shared-memory-changes-reach-sessions | Memory-change notification delivery MUST NOT interrupt a tool that has begun execution.
-<!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
-Source: spec/impl/v2/implementation.md#shared-memory-changes-reach-sessions | Memory-change notices MUST NOT create a session.
-<!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
-Source: spec/impl/v2/implementation.md#shared-memory-changes-reach-sessions | A memory-change notice MUST NOT initiate a model request by itself.
-<!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
-Source: spec/impl/v2/implementation.md#shared-memory-changes-reach-sessions | Pending notices for the same memory key MAY be coalesced to the latest committed revision.
-<!-- Allocation: V2_STORE#COLLAB_MCP | behavior -->
 
 Source: spec/impl/v2/implementation.md#limits-are-versioned-metadata | Every configurable runtime limit MUST be supplied by metadata rather than a policy constant in executable code.
 <!-- Allocation: V2_STORE#METADATA_LIMITS | behavior -->
@@ -572,6 +573,12 @@ Source: spec/impl/v2/implementation.md#automatic-cleanup-preserves-durable-work 
 <!-- Allocation: V2_WORKER#AUTOMATIC_CLEANUP | behavior -->
 Source: spec/impl/v2/implementation.md#automatic-cleanup-preserves-durable-work | Cleanup MUST preserve durable task results, histories, checkpoints, audit metadata, operation receipts and recovery journals in the initial profile.
 <!-- Allocation: V2_WORKER#AUTOMATIC_CLEANUP | behavior -->
+Source: spec/impl/v2/implementation.md#automatic-cleanup-preserves-durable-work | Cleanup MUST copy required transcripts from an eligible terminal supplied-executor attempt's private home to retained storage outside the contents selected for removal.
+<!-- Allocation: V2_WORKER#AUTOMATIC_CLEANUP | behavior -->
+Source: spec/impl/v2/implementation.md#automatic-cleanup-preserves-durable-work | Cleanup MUST verify the completeness and durability of each required transcript copy before removing its source.
+<!-- Allocation: V2_WORKER#AUTOMATIC_CLEANUP | behavior -->
+Source: spec/impl/v2/implementation.md#automatic-cleanup-preserves-durable-work | Cleanup MUST reclaim the remaining unneeded contents of an eligible terminal supplied-executor attempt's private home under its configured retention policy.
+<!-- Allocation: V2_WORKER#AUTOMATIC_CLEANUP | behavior -->
 
 Source: spec/impl/v2/implementation.md#definitions-carry-reusable-charters | The supplied executor MUST deliver the effective charter to its model.
 <!-- Allocation: V2_CHARTER_CODEX#DELIVERY | behavior -->
@@ -680,6 +687,45 @@ Deliverable: Simple browser collaboration and operational views matching shared 
 Acceptance: Real browser actions and visible outcomes agree with controller state; no second store, permission engine or grant provisioning is introduced.
 Dependency: V2_CONTROL | inferred | Uses the controller task contract and accepted state.
 Dependency: V2_WORKSPACE | inferred | Browser acceptance includes a real coding task, checkpoint and recovered result.
+Source: spec/impl/v2/implementation.md#task-reassignment-creates-a-new-session | An accepted reassignment to a different agent MUST create a distinct session for the same task identity.
+<!-- Allocation: V2_PRODUCT#TASK_REASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#task-reassignment-creates-a-new-session | A task reassignment MUST retain the task's prior session and execution-input history.
+<!-- Allocation: V2_PRODUCT#TASK_REASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#task-reassignment-creates-a-new-session | A reassigned session MUST bind the selected target agent's accepted definition revision.
+<!-- Allocation: V2_PRODUCT#TASK_REASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#task-reassignment-creates-a-new-session | A reassigned session MUST NOT execute until the prior execution is known unable to continue.
+<!-- Allocation: V2_PRODUCT#TASK_REASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#task-reassignment-creates-a-new-session | A reassigned session MUST NOT execute until relevant uncertain external effects are reconciled.
+<!-- Allocation: V2_PRODUCT#TASK_REASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#task-reassignment-creates-a-new-session | A task reassignment MUST preserve the task's accepted deadline.
+<!-- Allocation: V2_PRODUCT#TASK_REASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#task-reassignment-creates-a-new-session | A task reassignment MUST preserve its recorded usage accounting.
+<!-- Allocation: V2_PRODUCT#TASK_REASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#default-task-assignment | The default task agent MUST be selected through metadata.
+<!-- Allocation: V2_PRODUCT#DEFAULT_ASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#default-task-assignment | A new root task submitted without an explicit agent MUST resolve the configured default agent identity.
+<!-- Allocation: V2_PRODUCT#DEFAULT_ASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#default-task-assignment | An explicitly selected task agent MUST take precedence over the default agent identity.
+<!-- Allocation: V2_PRODUCT#DEFAULT_ASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#default-task-assignment | Default task assignment MUST refuse when no configured active registered identity can be resolved.
+<!-- Allocation: V2_PRODUCT#DEFAULT_ASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#default-task-assignment | The browser interface MUST support task submission without an explicit agent selection.
+<!-- Allocation: V2_PRODUCT#DEFAULT_ASSIGNMENT | behavior -->
+Source: spec/impl/v2/implementation.md#agent-identity-lifecycle | The controller MUST support explicit agent registration without creating a task.
+<!-- Allocation: V2_PRODUCT#AGENT_LIFECYCLE | behavior -->
+Source: spec/impl/v2/implementation.md#agent-identity-lifecycle | Retiring an agent identity MUST remove it from the active agent directory.
+<!-- Allocation: V2_PRODUCT#AGENT_LIFECYCLE | behavior -->
+Source: spec/impl/v2/implementation.md#agent-identity-lifecycle | A retired agent identity MUST be refused for new work.
+<!-- Allocation: V2_PRODUCT#AGENT_LIFECYCLE | behavior -->
+Source: spec/impl/v2/implementation.md#agent-identity-lifecycle | Agent retirement MUST preserve retained historical records.
+<!-- Allocation: V2_PRODUCT#AGENT_LIFECYCLE | behavior -->
+Source: spec/impl/v2/implementation.md#agent-identity-lifecycle | Agent retirement MUST NOT cancel already accepted work.
+<!-- Allocation: V2_PRODUCT#AGENT_LIFECYCLE | behavior -->
+Source: spec/impl/v2/implementation.md#agent-identity-lifecycle | Task submission MUST NOT reactivate a retired agent identity.
+<!-- Allocation: V2_PRODUCT#AGENT_LIFECYCLE | behavior -->
+Source: spec/impl/v2/implementation.md#agent-identity-lifecycle | A retired agent identity MUST remain resolvable for historical reads.
+<!-- Allocation: V2_PRODUCT#AGENT_LIFECYCLE | behavior -->
+
 Source: spec/impl/v2/implementation.md#initial-model-budget-policy | The default task model-request allowance MUST be the maximum finite value supported by the task representation.
 <!-- Allocation: V2_PRODUCT#PRODUCT | behavior -->
 Source: spec/impl/v2/implementation.md#shared-product-state | Task ownership MUST remain distinct from session and partition ownership.
@@ -712,6 +758,9 @@ Source: spec/impl/v2/implementation.md#shared-product-state | The browser interf
 <!-- Allocation: V2_PRODUCT#PRODUCT | behavior -->
 Source: spec/impl/v2/implementation.md#shared-product-state | The browser interface MUST link the task's published source checkpoints.
 <!-- Allocation: V2_PRODUCT#PRODUCT | behavior -->
+Source: spec/impl/v2/implementation.md#bounded-read-pagination | The browser interface MUST expose the same read pages and continuations as the shared agent interface.
+<!-- Allocation: V2_PRODUCT#READ_PAGINATION | behavior -->
+
 Source: spec/impl/v2/implementation.md#shared-product-state | The browser interface MUST present the information exposed through the shared agent interface.
 <!-- Allocation: V2_PRODUCT#PRODUCT | behavior -->
 Source: spec/impl/v2/implementation.md#shared-product-state | The browser interface MUST update displayed state without requiring a manual page reload.
@@ -768,9 +817,9 @@ Source: spec/impl/v2/implementation.md#collaboration-surfaces-preserve-existing-
 Source: spec/impl/v2/implementation.md#collaboration-surfaces-preserve-existing-authority | Adding collaboration operations MUST NOT expand an already accepted task's configured tool profile.
 <!-- Allocation: V2_COLLAB_JOIN#SURFACES | behavior -->
 
-Source: spec/impl/v2/implementation.md#definitions-carry-reusable-charters | A session MUST retain the charter revision effective at each turn boundary.
+Source: spec/impl/v2/implementation.md#definitions-carry-reusable-charters | A session MUST retain the charter revision effective for each native turn or delivered for each supplied outer turn.
 <!-- Allocation: V2_CHARTER_JOIN#RECOVERY | behavior -->
-Source: spec/impl/v2/implementation.md#charter-changes-apply-at-safe-boundaries | A charter change MUST apply to a running session at its next turn boundary.
+Source: spec/impl/v2/implementation.md#charter-changes-apply-at-safe-boundaries | A charter change MUST apply to a running native session at its next turn boundary.
 <!-- Allocation: V2_CHARTER_JOIN#ADOPTION | behavior -->
 Source: spec/impl/v2/implementation.md#charter-changes-apply-at-safe-boundaries | A charter change MUST NOT apply between a tool call and the delivery of its result.
 <!-- Allocation: V2_CHARTER_JOIN#ADOPTION | behavior -->
@@ -780,21 +829,25 @@ Source: spec/impl/v2/implementation.md#charter-changes-apply-at-safe-boundaries 
 <!-- Allocation: V2_CHARTER_JOIN#ADOPTION | behavior -->
 Source: spec/impl/v2/implementation.md#charter-changes-apply-at-safe-boundaries | A charter change MUST reach the supplied executor only at a supported step boundary.
 <!-- Allocation: V2_CHARTER_JOIN#ADOPTION | behavior -->
-Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | Every turn reply MUST carry structured charter-reference metadata.
+Source: spec/impl/v2/implementation.md#charter-changes-apply-at-safe-boundaries | A supplied-executor charter change MUST retain the prior delivered revision until delivery at a qualified public input boundary is acknowledged.
+<!-- Allocation: V2_CHARTER_JOIN#ADOPTION | behavior -->
+Source: spec/impl/v2/implementation.md#charter-changes-apply-at-safe-boundaries | A supplied-executor charter change without a qualified public input boundary MUST remain visibly pending or unsupported.
+<!-- Allocation: V2_CHARTER_JOIN#ADOPTION | behavior -->
+Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | Each native turn reply or supplied outer-turn result MUST carry structured charter-reference metadata.
 <!-- Allocation: V2_CHARTER_JOIN#REPLIES | behavior -->
-Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | A turn reply's charter-reference metadata MUST identify the authoritative charter revision effective at that turn's boundary.
+Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | Charter-reference metadata MUST identify the authoritative charter revision effective for its native turn or delivered for its supplied outer turn.
 <!-- Allocation: V2_CHARTER_JOIN#REPLIES | behavior -->
-Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | A turn reply's charter-reference metadata MUST identify the specific charter clauses governing its response or actions.
+Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | Charter-reference metadata MUST identify the specific charter clauses governing its associated response or actions.
 <!-- Allocation: V2_CHARTER_JOIN#REPLIES | behavior -->
 Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | A charter clause reference MUST resolve to the clause's source file, section, and exact sentence within the identified charter revision.
 <!-- Allocation: V2_CHARTER_JOIN#REPLIES | behavior -->
-Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | A turn reply's durable record MUST retain its charter-reference metadata.
+Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | The durable record of a native turn reply or supplied outer-turn result MUST retain its charter-reference metadata.
 <!-- Allocation: V2_CHARTER_JOIN#REPLIES | behavior -->
-Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | A record that cites a turn reply for audit inspection MUST preserve its association with that reply's charter-reference metadata.
+Source: spec/impl/v2/implementation.md#every-turn-reply-carries-charter-references | A record that cites a native turn reply or supplied outer-turn result for audit inspection MUST preserve the cited reply's or result's charter-reference metadata association.
 <!-- Allocation: V2_CHARTER_JOIN#REPLIES | behavior -->
-Source: spec/impl/v2/implementation.md#reference-checks-produce-audit-information | The platform MUST check each turn reply's charter references against the authoritative charter revision effective for that turn.
+Source: spec/impl/v2/implementation.md#reference-checks-produce-audit-information | The platform MUST check each native turn reply's or supplied outer-turn result's charter references against the authoritative charter revision effective for the native turn or delivered for the supplied outer turn.
 <!-- Allocation: V2_CHARTER_JOIN#AUDIT | behavior -->
-Source: spec/impl/v2/implementation.md#reference-checks-produce-audit-information | The platform MUST record invalid or mismatched charter references with the reply they came from for audit inspection.
+Source: spec/impl/v2/implementation.md#reference-checks-produce-audit-information | The platform MUST record invalid or mismatched charter references with the native turn reply or supplied outer-turn result they came from for audit inspection.
 <!-- Allocation: V2_CHARTER_JOIN#AUDIT | behavior -->
 Source: spec/impl/v2/implementation.md#reference-checks-produce-audit-information | A charter reference check MUST NOT be treated as proof of behavioral compliance.
 <!-- Allocation: V2_CHARTER_JOIN#AUDIT | behavior -->
